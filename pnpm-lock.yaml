@@ -12,6 +12,7 @@ dependencies:
   react-scripts: 3.3.0_3789528a54be0f4afabb5f90bb07b9a8
   typescript: 3.7.4
 devDependencies:
+  '@types/enzyme': 3.10.4
   enzyme: 3.11.0
   enzyme-adapter-react-16: 1.15.2_3302d41cb01481e7edfc8c11c26d98df
 lockfileVersion: 5.1
@@ -1608,6 +1609,19 @@ packages:
     dev: false
     resolution:
       integrity: sha512-yGeB2dHEdvxjP0y4UbRtQaSkXJ9649fYCmIdRoul5kfAoGCwxuCbMhag0k3RPfnuh9kPGm8x89btcfDEXdVWGw==
+  /@types/cheerio/0.22.15:
+    dependencies:
+      '@types/node': 12.12.24
+    dev: true
+    resolution:
+      integrity: sha512-UGiiVtJK5niCqMKYmLEFz1Wl/3L5zF/u78lu8CwoUywWXRr9LDimeYuOzXVLXBMO758fcTdFtgjvqlztMH90MA==
+  /@types/enzyme/3.10.4:
+    dependencies:
+      '@types/cheerio': 0.22.15
+      '@types/react': 16.9.17
+    dev: true
+    resolution:
+      integrity: sha512-P5XpxcIt9KK8QUH4al4ttfJfIHg6xmN9ZjyUzRSzAsmDYwRXLI05ng/flZOPXrEXmp8ZYiN8/tEXYK5KSOQk3w==
   /@types/eslint-visitor-keys/1.0.0:
     dev: false
     resolution:
@@ -1663,7 +1677,6 @@ packages:
     resolution:
       integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
   /@types/prop-types/15.7.3:
-    dev: false
     resolution:
       integrity: sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
   /@types/q/1.5.2:
@@ -1680,7 +1693,6 @@ packages:
     dependencies:
       '@types/prop-types': 15.7.3
       csstype: 2.6.8
-    dev: false
     resolution:
       integrity: sha512-UP27In4fp4sWF5JgyV6pwVPAQM83Fj76JOcg02X5BZcpSu5Wx+fP9RMqc2v0ssBoQIFvD5JdKY41gjJJKmw6Bg==
   /@types/stack-utils/1.0.1:
@@ -3703,7 +3715,6 @@ packages:
     resolution:
       integrity: sha512-GBrLZYZ4X4x6/QEoBnIrqb8B/f5l4+8me2dkom/j1Gtbxy0kBv6OGzKuAsGM75bkGwGAFkt56Iwg28S3XTZgSA==
   /csstype/2.6.8:
-    dev: false
     resolution:
       integrity: sha512-msVS9qTuMT5zwAGCVm4mxfrZ18BNc6Csd0oJAtiFMZ1FAx1CCvy2+5MDmYoix63LM/6NDbNtodCiGYGmFgO0dA==
   /currently-unhandled/0.4.1:
@@ -11882,6 +11893,7 @@ specifiers:
   '@testing-library/jest-dom': ^4.2.4
   '@testing-library/react': ^9.3.2
   '@testing-library/user-event': ^7.1.2
+  '@types/enzyme': ^3.10.4
   '@types/jest': ^24.0.0
   '@types/node': ^12.0.0
   '@types/react': ^16.9.0
