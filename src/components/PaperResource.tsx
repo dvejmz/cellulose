@@ -1,22 +1,13 @@
 import React from 'react';
 
-export default (props: { value: number }) => (
+interface PaperResourceProps {
+  value: number;
+}
+
+const PaperResource: React.FC<PaperResourceProps> = (props: PaperResourceProps) => (
   <div className="resources__paper">
-    <span>Paper: {props.value}</span>
+    Paper: {props.value}
   </div>
 );
 
-//class PaperResource extends React.Component {
-//  constructor(props) {
-//    super(props);
-//  }
-//  render() {
-//    return (
-//  <div className="resources__paper">
-//    <span>Paper: {this.props.value}</span>
-//  </div>
-//    );
-//  }
-//}
-//
-//export default PaperResource;
+export default PaperResource;

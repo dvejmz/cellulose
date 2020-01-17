@@ -3,10 +3,6 @@ import './App.scss';
 import MakePaperButton from './components/MakePaperButton';
 import PaperResource from './components/PaperResource';
 
-export const getIncreasedPaperResource = (current: number, increment: number): number => {
-  return current + increment;
-};
-
 const App: React.FC = () => {
   const [ resources, setResources ] = useState({
     paper: 0,
@@ -15,7 +11,7 @@ const App: React.FC = () => {
   const handleMakePaperButtonClick = () => {
     setResources({
       ...resources,
-      paper: getIncreasedPaperResource(resources.paper, 1),
+      paper: resources.paper + 1,
     });
   };
 
