@@ -15,25 +15,25 @@ describe('App', () => {
     wrapper = mount(createApp(initialResources));
   });
 
-  it('should show make paper button', () => {
-    expect(wrapper.exists(MakePaperButton)).toBe(true);
-  });
+  it('should show make paper button', () => (
+    expect(wrapper.exists(MakePaperButton)).toBe(true)
+  ));
 
-  it('should show initial paper resource value', () => {
-    expect(wrapper.find('.resources__paper-value').text()).toEqual('0');
-  });
+  it('should show initial paper resource value', () => (
+    expect(findResourceValue(wrapper, 'paper')).toEqual('0')
+  ));
 
-  it('should show current paper counter', () => {
-    expect(wrapper.exists('.resources__paper')).toBe(true);
-  });
+  it('should show current paper counter', () => (
+    expect(wrapper.exists('.resources__paper')).toBe(true)
+  ));
 
-  it('should show initial pulp resource value', () => {
-    expect(wrapper.find('.resources__pulp-value').text()).toEqual('10');
-  });
+  it('should show initial pulp resource value', () => (
+    expect(findResourceValue(wrapper, 'pulp')).toEqual('10')
+  ));
 
-  it('should show current pulp counter', () => {
-    expect(wrapper.exists('.resources__pulp')).toBe(true);
-  });
+  it('should show current pulp counter', () => (
+    expect(wrapper.exists('.resources__pulp')).toBe(true)
+  ));
 
   describe('when make paper button is clicked', () => {
       beforeEach(() => {
@@ -42,12 +42,12 @@ describe('App', () => {
         });
       });
 
-      it('should increase paper resource', () => {
-        expect(wrapper.find('.resources__paper').text()).toEqual('Paper: 1');
-      });
+      it('should increase paper resource', () => (
+        expect(findResourceValue(wrapper, 'paper')).toEqual('1')
+      ));
 
       it('should decrease pulp resource', () => {
-        expect(wrapper.find('.resources__pulp').text()).toEqual('Pulp: 9')
+        expect(findResourceValue(wrapper, 'pulp')).toEqual('9')
       });
 
       describe('and there is no pulp left', () => {
@@ -61,13 +61,17 @@ describe('App', () => {
           });
         });
 
-        it('does not increase paper counter', () => {
-          expect(wrapper.find('.resources__paper-value').text()).toEqual('0');
-        });
+        it('does not increase paper counter', () => (
+          expect(findResourceValue(wrapper, 'paper')).toEqual('0')
+        ));
 
-        it('does not decrease pulp counter', () => {
-          expect(wrapper.find('.resources__pulp-value').text()).toEqual('0');
-        });
+        it('does not decrease pulp counter', () => (
+          expect(findResourceValue(wrapper, 'pulp')).toEqual('0')
+        ));
       });
   });
 });
+
+const findResourceValue = (wrapper: ReactWrapper, resourceClassId: string): string | number => (
+  wrapper.find(`.resources__${resourceClassId}-value`).text()
+);
