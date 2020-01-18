@@ -22,20 +22,6 @@ describe('<Resource />', () => {
     expect(resource.find('.resources__paper-value').text()).toBe('9001');
   });
 
-  it('does not go below specified minimum', () => {
-    act(() => {
-      resource.setProps({ value: -1000, min: 0 });
-    });
-    expect(resource.find('.resources__paper-value').text()).toBe('0');
-  });
-
-  it('does not go above specified maximum', () => {
-    act(() => {
-      resource.setProps({ value: 1000, max: 100 });
-    });
-    expect(resource.find('.resources__paper-value').text()).toBe('100');
-  });
-
   it('shows correct classNames', () => {
     expect(resource.prop('className')).toContain('resources__paper');
     expect(resource.find('.resources__paper-label').exists()).toBeTruthy();
