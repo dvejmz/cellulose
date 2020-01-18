@@ -14,12 +14,26 @@ describe('<Resource />', () => {
     expect(resource.exists()).toBeTruthy();
   });
 
-  it('it shows resource name', () => {
+  it('shows resource name', () => {
     expect(resource.find('.resources__paper-label').text()).toBe('Paper')
   });
 
   it('shows resource value', () => {
     expect(resource.find('.resources__paper-value').text()).toBe('9001');
+  });
+
+  it('does not go below specified minimum', () => {
+    act(() => {
+      resource.setProps({ value: -1000, min: 0 });
+    });
+    expect(resource.find('.resources__paper-value').text()).toBe('0');
+  });
+
+  it('does not go above specified maximum', () => {
+    act(() => {
+      resource.setProps({ value: 1000, max: 100 });
+    });
+    expect(resource.find('.resources__paper-value').text()).toBe('100');
   });
 
   it('shows correct classNames', () => {

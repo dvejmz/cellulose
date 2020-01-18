@@ -20,11 +20,21 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   const { config } = props;
   const [ resources, setResources ] = useState(config.initialResources);
 
+  const getUpdatedPaperCounter = (): number => (
+    resources.pulp
+      ? resources.paper + 1
+      : resources.paper
+  );
+
+  const getUpdatedPulpCounter = (): number => (
+    Math.max(resources.pulp - 1, 0)
+  );
+
   const handleMakePaperButtonClick = () => {
     setResources({
       ...resources,
-      paper: resources.paper + 1,
-      pulp: resources.pulp - 1,
+      paper: getUpdatedPaperCounter(),
+      pulp: getUpdatedPulpCounter(),
     });
   };
 

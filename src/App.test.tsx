@@ -49,5 +49,25 @@ describe('App', () => {
       it('should decrease pulp resource', () => {
         expect(wrapper.find('.resources__pulp').text()).toEqual('Pulp: 9')
       });
+
+      describe('and there is no pulp left', () => {
+        beforeEach(() => {
+          wrapper = mount(createApp({
+            paper: 0,
+            pulp: 0,
+          }));
+          act(() => {
+            wrapper.find('.make-paper__button').simulate('click');
+          });
+        });
+
+        it('does not increase paper counter', () => {
+          expect(wrapper.find('.resources__paper-value').text()).toEqual('0');
+        });
+
+        it('does not decrease pulp counter', () => {
+          expect(wrapper.find('.resources__pulp-value').text()).toEqual('0');
+        });
+      });
   });
 });
