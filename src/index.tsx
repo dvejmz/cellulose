@@ -5,8 +5,8 @@ import createApp, { GameState } from './App';
 import * as serviceWorker from './serviceWorker';
 
 const initialState: GameState = {
+  funds: 100,
   resources: {
-    funds: 100,
     paper: 0,
     pulp: 10,
   },

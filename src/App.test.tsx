@@ -11,10 +11,10 @@ describe('App', () => {
 
   beforeEach(() => {
     initialState = {
+      funds: 100,
       resources: {
         paper: 0,
         pulp: 10,
-        funds: 100,
       },
       purchaseRates: {
         pulp: 1,
@@ -97,19 +97,19 @@ describe('App', () => {
       expectResourceValue(wrapper, 'pulp', '11')
     ));
 
-    it('should subtract current pulp price from funds', () => (
-      expectFundsValue(wrapper, '90')
-    ));
+    it('should subtract current pulp price from funds', () => {
+      expectFundsValue(wrapper, '90');
+    });
 
     it('should not buy pulp if funds are insufficient', () => {
       const noFundsState = { ...initialState };
-      noFundsState.resources.funds = 0;
+      noFundsState.funds = 0;
       wrapper = mount(createApp(noFundsState));
       act(() => {
         wrapper.find('.resources__pulp-buy-button').simulate('click');
       });
 
-      expectFundsValue(wrapper, '0');
+      expectResourceValue(wrapper, 'pulp', '10');
     });
   });
 });
