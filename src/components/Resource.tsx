@@ -1,11 +1,10 @@
 import React from 'react';
 
-interface ResourceProps {
+export interface ResourceProps {
   name: string;
   classNameId: string;
   value: number;
 }
-
 
 const Resource: React.FC<ResourceProps> = (props: ResourceProps) => {
   return (

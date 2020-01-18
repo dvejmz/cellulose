@@ -1,22 +1,29 @@
 import React from 'react';
-import createApp from './App';
+import createApp, { GameState } from './App';
 import { mount, ReactWrapper } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import MakePaperButton from './components/MakePaperButton';
 
 describe('App', () => {
   let wrapper: ReactWrapper;
+  let initialState: GameState;
 
   beforeEach(() => {
-    const initialResources = {
-      paper: 0,
-      pulp: 10,
+    initialState = {
+      resources: {
+        paper: 0,
+        pulp: 10,
+      },
+      purchaseRates: {
+        pulp: 1,
+      },
     };
-    wrapper = mount(createApp(initialResources));
+
+    wrapper = mount(createApp(initialState));
   });
 
   it('should show make paper button', () => (
-    expect(wrapper.exists(MakePaperButton)).toBe(true)
+    expect(wrapper.exists(MakePaperButton)).toBeTruthy()
   ));
 
   it('should show initial paper resource value', () => (
@@ -24,7 +31,7 @@ describe('App', () => {
   ));
 
   it('should show current paper counter', () => (
-    expect(wrapper.exists('.resources__paper')).toBe(true)
+    expect(wrapper.exists('.resources__paper')).toBeTruthy()
   ));
 
   it('should show initial pulp resource value', () => (
@@ -32,7 +39,7 @@ describe('App', () => {
   ));
 
   it('should show current pulp counter', () => (
-    expect(wrapper.exists('.resources__pulp')).toBe(true)
+    expect(wrapper.exists('.resources__pulp')).toBeTruthy()
   ));
 
   describe('when make paper button is clicked', () => {
@@ -52,10 +59,9 @@ describe('App', () => {
 
       describe('and there is no pulp left', () => {
         beforeEach(() => {
-          wrapper = mount(createApp({
-            paper: 0,
-            pulp: 0,
-          }));
+          const noPulpState = { ...initialState };
+          noPulpState.resources.pulp = 0;
+          wrapper = mount(createApp(noPulpState));
           act(() => {
             wrapper.find('.make-paper__button').simulate('click');
           });
@@ -70,7 +76,23 @@ describe('App', () => {
         ));
       });
   });
+
+  describe('when buy pulp button is clicked', () => {
+    beforeEach(() => {
+      act(() => {
+        wrapper.find('.resources__pulp-buy-button').simulate('click');
+      });
+    });
+
+    it('should increase pulp by current purchase rate', () => (
+      expectResourceValue(wrapper, 'pulp', '11')
+    ));
+  });
 });
+
+const expectResourceValue = (wrapper: ReactWrapper, resourceClassId: string, expectedValue: string): void => (
+  expect(findResourceValue(wrapper, resourceClassId)).toEqual(expectedValue)
+);
 
 const findResourceValue = (wrapper: ReactWrapper, resourceClassId: string): string | number => (
   wrapper.find(`.resources__${resourceClassId}-value`).text()

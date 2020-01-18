@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
 import './App.scss';
 import MakePaperButton from './components/MakePaperButton';
+import PurchasableResource from './components/PurchasableResource';
 import Resource from './components/Resource';
 
-export interface PlayerResources {
+interface PlayerResources {
   paper: number;
   pulp: number;
 }
 
-interface AppConfig {
-  initialResources: PlayerResources;
+interface PurchaseRates {
+  pulp: number;
+}
+
+export interface GameState {
+  resources: PlayerResources;
+  purchaseRates: PurchaseRates;
 }
 
 interface AppProps {
-  config: AppConfig;
+  initialState: GameState;
 }
 
 const App: React.FC<AppProps> = (props: AppProps) => {
-  const { config } = props;
-  const [ resources, setResources ] = useState(config.initialResources);
+  const { initialState } = props;
+  const [ resources, setResources ] = useState(initialState.resources);
+  const [ purchaseRates, setPurchaseRates ] = useState(initialState.purchaseRates);
 
   const getUpdatedPaperCounter = (): number => (
     resources.pulp
@@ -38,22 +45,40 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     });
   };
 
+  const increasePulpByPurchaseRate = (): number => (
+    resources.pulp + purchaseRates.pulp
+  );
+
+  const handleBuyPulpClick = () => {
+    setResources({
+      ...resources,
+      pulp: increasePulpByPurchaseRate(),
+    });
+  };
+
   return (
     <div className="App">
       <MakePaperButton onClick={handleMakePaperButtonClick} />
       <div className="resources">
-        <Resource name="Paper" classNameId="paper" value={resources.paper} />
-        <Resource name="Pulp" classNameId="pulp" value={resources.pulp} />
+        <Resource
+          name="Paper"
+          classNameId="paper"
+          value={resources.paper}
+        />
+        <PurchasableResource
+          name="Pulp"
+          classNameId="pulp"
+          value={resources.pulp}
+          onBuyClick={handleBuyPulpClick}
+        />
       </div>
     </div>
   );
 }
 
-const createApp = (initialResources: PlayerResources) => {
+const createApp = (initialState: GameState) => {
   const appProps: AppProps = {
-    config: {
-      initialResources,
-    }
+    initialState,
   };
   return (<App {...appProps} />);
 }

@@ -7,7 +7,12 @@ describe('<Resource />', () => {
   let resource: ShallowWrapper;
 
   beforeEach(() => {
-    resource = shallow(<Resource name="Paper" classNameId="paper" value={9001} />);
+    resource = shallow(
+      <Resource
+        name="Paper"
+        classNameId="paper"
+        value={9001}
+      />);
   });
 
   it('renders ok', () => {
