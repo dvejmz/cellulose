@@ -3,15 +3,28 @@ import './App.scss';
 import MakePaperButton from './components/MakePaperButton';
 import Resource from './components/Resource';
 
-const App: React.FC = () => {
-  const [ resources, setResources ] = useState({
-    paper: 0,
-  });
+export interface PlayerResources {
+  paper: number;
+  pulp: number;
+}
+
+interface AppConfig {
+  initialResources: PlayerResources;
+}
+
+interface AppProps {
+  config: AppConfig;
+}
+
+const App: React.FC<AppProps> = (props: AppProps) => {
+  const { config } = props;
+  const [ resources, setResources ] = useState(config.initialResources);
 
   const handleMakePaperButtonClick = () => {
     setResources({
       ...resources,
       paper: resources.paper + 1,
+      pulp: resources.pulp - 1,
     });
   };
 
@@ -20,9 +33,19 @@ const App: React.FC = () => {
       <MakePaperButton onClick={handleMakePaperButtonClick} />
       <div className="resources">
         <Resource name="Paper" classNameId="paper" value={resources.paper} />
+        <Resource name="Pulp" classNameId="pulp" value={resources.pulp} />
       </div>
     </div>
   );
 }
 
-export default App;
+const createApp = (initialResources: PlayerResources) => {
+  const appProps: AppProps = {
+    config: {
+      initialResources,
+    }
+  };
+  return (<App {...appProps} />);
+}
+
+export default createApp;
