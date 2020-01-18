@@ -8,6 +8,7 @@ dependencies:
   '@types/react-dom': 16.9.4
   node-sass: 4.13.0
   react: 16.12.0
+  react-combine-reducers: 1.0.2
   react-dom: 16.12.0_react@16.12.0
   react-scripts: 3.3.0_3789528a54be0f4afabb5f90bb07b9a8
   typescript: 3.7.4
@@ -9375,6 +9376,10 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-RcbV6+msbvZJZUIK/LX3UafPtoaDSJgUWu4sqBxHKTVmBsnlU2QWCKJRBRmgjxu+ivW/GPINbPWRM4Ppa6Lbgw==
+  /react-combine-reducers/1.0.2:
+    dev: false
+    resolution:
+      integrity: sha512-qT0cScAttbHVIJ1IfA5UIAEw/HvPJY+LcKau5NA3BkbDrU4U5gU+GhDZlS0IonMq3ZzhA7Knj6QGzckmnDcCoQ==
   /react-dev-utils/10.0.0:
     dependencies:
       '@babel/code-frame': 7.5.5
@@ -11902,6 +11907,7 @@ specifiers:
   enzyme-adapter-react-16: ^1.15.2
   node-sass: ^4.13.0
   react: ^16.12.0
+  react-combine-reducers: ^1.0.2
   react-dom: ^16.12.0
   react-scripts: 3.3.0
   typescript: ~3.7.2
