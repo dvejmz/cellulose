@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.scss';
 import MakePaperButton from './components/MakePaperButton';
-import PaperResource from './components/PaperResource';
+import Resource from './components/Resource';
 
 const App: React.FC = () => {
   const [ resources, setResources ] = useState({
@@ -19,7 +19,7 @@ const App: React.FC = () => {
     <div className="App">
       <MakePaperButton onClick={handleMakePaperButtonClick} />
       <div className="resources">
-        <PaperResource value={resources.paper} />
+        <Resource name="Paper" classNameId="paper" value={resources.paper} />
       </div>
     </div>
   );
