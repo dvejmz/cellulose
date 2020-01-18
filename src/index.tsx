@@ -6,11 +6,15 @@ import * as serviceWorker from './serviceWorker';
 
 const initialState: GameState = {
   resources: {
+    funds: 100,
     paper: 0,
     pulp: 10,
   },
   purchaseRates: {
     pulp: 1,
+  },
+  resourcePrices: {
+    pulp: 10,
   },
 };
 ReactDOM.render(createApp(initialState), document.getElementById('root'));

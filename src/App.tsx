@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import './App.scss';
 import MakePaperButton from './components/MakePaperButton';
 import PurchasableResource from './components/PurchasableResource';
+import Funds from './components/Funds';
 import Resource from './components/Resource';
 
 interface PlayerResources {
+  funds: number;
   paper: number;
   pulp: number;
 }
@@ -13,8 +15,13 @@ interface PurchaseRates {
   pulp: number;
 }
 
+interface ResourcePrices {
+  pulp: number;
+}
+
 export interface GameState {
   resources: PlayerResources;
+  resourcePrices: ResourcePrices;
   purchaseRates: PurchaseRates;
 }
 
@@ -26,6 +33,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   const { initialState } = props;
   const [ resources, setResources ] = useState(initialState.resources);
   const [ purchaseRates, setPurchaseRates ] = useState(initialState.purchaseRates);
+  const [ resourcePrices, setResourcePrices ] = useState(initialState.resourcePrices);
 
   const getUpdatedPaperCounter = (): number => (
     resources.pulp
@@ -49,10 +57,15 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     resources.pulp + purchaseRates.pulp
   );
 
+  const subtractPulpPriceFromFunds = (): number => (
+    Math.max(resources.funds - resourcePrices.pulp, 0)
+  );
+
   const handleBuyPulpClick = () => {
     setResources({
       ...resources,
       pulp: increasePulpByPurchaseRate(),
+      funds: subtractPulpPriceFromFunds(),
     });
   };
 
@@ -60,6 +73,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     <div className="App">
       <MakePaperButton onClick={handleMakePaperButtonClick} />
       <div className="resources">
+        <Funds amount={resources.funds} currency={'£'} />
         <Resource
           name="Paper"
           classNameId="paper"
