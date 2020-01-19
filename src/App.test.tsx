@@ -13,15 +13,19 @@ describe('App', () => {
     initialState = {
       funds: 100,
       resources: {
-        paper: 0,
-        pulp: 10,
+        paper: {
+          name: 'Paper',
+          quantity: 0,
+          price: 0,
+          purchaseRate: 0,
+        },
+        pulp: {
+          name: 'Pulp',
+          quantity: 10,
+          price: 10,
+          purchaseRate: 1,
+        },
       },
-      purchaseRates: {
-        pulp: 1,
-      },
-      resourcePrices: {
-        pulp: 10,
-      }
     };
 
     wrapper = mount(createApp(initialState));
@@ -69,7 +73,7 @@ describe('App', () => {
       describe('and there is no pulp left', () => {
         beforeEach(() => {
           const noPulpState = { ...initialState };
-          noPulpState.resources.pulp = 0;
+          noPulpState.resources.pulp.quantity = 0;
           wrapper = mount(createApp(noPulpState));
           act(() => {
             wrapper.find('.make-paper__button').simulate('click');
