@@ -1,5 +1,5 @@
-import { Resource } from '../../models/resource';
 import { GameState, Resources } from '../../App';
+import { Resource } from '../../models/resource';
 
 export const getMockGameState = (overrides: any = {}): GameState => ({
   funds: 100 || overrides.funds,

@@ -1,5 +1,5 @@
-import { RootReducerAction } from '../App';
 import * as Actions from '../actions';
+import { RootReducerAction } from '../App';
 
 const fundsReducer = (currentFunds: number, action: RootReducerAction): number => {
   switch (action.type) {

@@ -1,9 +1,9 @@
-import React from 'react';
-import createApp, { GameState } from './App';
 import { mount, ReactWrapper } from 'enzyme';
+import React from 'react';
 import { act } from 'react-dom/test-utils';
-import MakePaperButton from './components/MakePaperButton';
+import createApp, { GameState } from './App';
 import Funds from './components/Funds';
+import MakePaperButton from './components/MakePaperButton';
 
 describe('App', () => {
   let wrapper: ReactWrapper;

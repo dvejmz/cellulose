@@ -1,5 +1,5 @@
-import React from 'react';
 import { shallow } from 'enzyme';
+import React from 'react';
 import PurchasableResource from './PurchasableResource';
 
 describe('<PurchasableResource />', () => {
@@ -11,7 +11,7 @@ describe('<PurchasableResource />', () => {
         name="Pulp"
         classNameId="pulp"
         value={9001}
-        onBuyClick={() => {}}
+        onBuyClick={() => {}} // tslint:disable-line no-empty
       />);
   });
 

@@ -1,7 +1,7 @@
-import { getMockResources } from '../utils/test/mocks';
-import { Resources } from '../App';
 import * as Actions from '../actions';
+import { Resources } from '../App';
 import resourcesReducer from '../reducers/resources';
+import { getMockResources } from '../utils/test/mocks';
 
 describe('ResourcesReducer', () => {
   let initialState: Resources;

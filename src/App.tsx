@@ -1,14 +1,14 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import combineReducers from 'react-combine-reducers';
-import resourcesReducer from './reducers/resources';
-import fundsReducer from './reducers/funds';
 import * as Actions from './actions';
 import './App.scss';
+import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 import PurchasableResource from './components/PurchasableResource';
-import Funds from './components/Funds';
-import { Resource } from './models/resource';
 import PlayerResource from './components/Resource';
+import { Resource } from './models/resource';
+import fundsReducer from './reducers/funds';
+import resourcesReducer from './reducers/resources';
 
 export interface RootReducerAction {
   type: string;

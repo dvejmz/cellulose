@@ -1,5 +1,5 @@
-import { Resources, RootReducerAction } from '../App';
 import * as Actions from '../actions';
+import { Resources, RootReducerAction } from '../App';
 
 const getUpdatedPaperCounter = (resources: Resources): number => (
   resources.pulp.quantity 

@@ -1,5 +1,5 @@
-import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
+import React from 'react';
 import { act } from 'react-dom/test-utils';
 import Resource from './Resource';
 

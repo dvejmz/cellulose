@@ -1,7 +1,7 @@
-import { getMockGameState, getMockPaperResource } from '../utils/test/mocks';
-import { GameState } from '../App';
 import * as Actions from '../actions';
+import { GameState } from '../App';
 import fundsReducer from '../reducers/funds';
+import { getMockGameState, getMockPaperResource } from '../utils/test/mocks';
 
 describe('ResourcesReducer', () => {
   let initialState: GameState;

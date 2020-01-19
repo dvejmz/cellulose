@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import createApp, { GameState } from './App';
+import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 const initialState: GameState = {
