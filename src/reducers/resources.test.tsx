@@ -25,4 +25,23 @@ describe('ResourcesReducer', () => {
       expect(reducedState.paper.quantity).toBe(9)
     ));
   });
+
+  describe(Actions.RESOURCES_BUY_PULP, () => {
+    beforeEach(() => {
+      initialState = getMockResources({ paper: { quantity: 10 }});
+      reducedState = resourcesReducer(
+        initialState,
+        {
+          type: Actions.RESOURCES_SELL_PAPER,
+          data:
+          {
+            paper: { ...initialState.paper },
+          }
+      });
+    });
+
+    it('should decrease paper quantity by sale rate amount', () => (
+      expect(reducedState.paper.quantity).toBe(9)
+    ));
+  });
 });

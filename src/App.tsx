@@ -1,7 +1,9 @@
 import React, { useEffect, useReducer } from 'react';
+
+import './App.scss';
+
 import combineReducers from 'react-combine-reducers';
 import * as Actions from './actions';
-import './App.scss';
 import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 import PurchasableResource from './components/PurchasableResource';
@@ -63,14 +65,15 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   });
 
   const handleMakePaperButtonClick = () => {
-    dispatch({ type: RESOURCES_MAKE_PAPER });
+    if (resources.pulp.quantity) {
+      dispatch({ type: RESOURCES_MAKE_PAPER });
+    }
   };
 
   const handleBuyPulpClick = () => {
-    if (funds < resources.pulp.price) {
-      return;
+    if (funds >= resources.pulp.price) {
+      dispatch({ type: RESOURCES_BUY_PULP, data: { pulp: resources.pulp }});
     }
-    dispatch({ type: RESOURCES_BUY_PULP, data: { pulp: resources.pulp }});
   };
 
   return (
