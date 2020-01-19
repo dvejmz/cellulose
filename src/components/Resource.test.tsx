@@ -20,20 +20,14 @@ describe('<Resource />', () => {
   });
 
   it('shows resource name', () => {
-    expect(resource.find('.resources__paper-label').text()).toBe('Paper')
+    expect(resource.find('.resource__label').text()).toBe('Paper')
   });
 
   it('shows resource value', () => {
-    expect(resource.find('.resources__paper-value').text()).toBe('9001');
+    expect(resource.find('.resource__value').text()).toBe('9001');
   });
 
   it('shows resource unit', () => {
     expect(resource.find('.resource__unit').text()).toBe('sheets')
-  });
-
-  it('shows correct classNames', () => {
-    expect(resource.prop('className')).toContain('resources__paper');
-    expect(resource.find('.resources__paper-label').exists()).toBeTruthy();
-    expect(resource.find('.resources__paper-value').exists()).toBeTruthy();
   });
 });

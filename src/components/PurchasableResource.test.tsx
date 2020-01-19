@@ -19,10 +19,14 @@ describe('<PurchasableResource />', () => {
   });
 
   it('renders ok', () => (
-    expect(purchasableResource.find('.resources__buy-button-text').text()).toBe('Buy')
+    expect(purchasableResource.exists()).toBeTruthy()
   ));
 
-  it('shows purchase price', () => (
-    expect(purchasableResource.find('.resources__pulp-price').text()).toBe('(£10)')
+  it('shows buy text', () => (
+    expect(purchasableResource.find('.resource__buy-button').text()).toContain('Buy')
+  ));
+
+  it('shows resource price', () => (
+    expect(purchasableResource.find('.resource__buy-price').text()).toContain('(£10)')
   ));
 });

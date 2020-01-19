@@ -1,5 +1,4 @@
 import { mount, ReactWrapper } from 'enzyme';
-import React from 'react';
 import { act } from 'react-dom/test-utils';
 import createApp, { AppConfig, GameState } from './App';
 import Funds from './components/Funds';
@@ -39,20 +38,24 @@ describe('App', () => {
     expect(wrapper.exists(MakePaperButton)).toBeTruthy()
   ));
 
+  it('should show make paper button by test id', () => {
+    expect(getByTestId(wrapper, 'make-paper-button').exists()).toBeTruthy();
+  });
+
   it('should show initial paper resource value', () => (
-    expect(findResourceValue(wrapper, 'paper')).toEqual('0')
+    expect(findResourceValue(wrapper, 'resource-paper')).toEqual('0')
   ));
 
   it('should show current paper counter', () => (
-    expect(wrapper.exists('.resources__paper')).toBeTruthy()
+    expect(getByTestId(wrapper, 'resource-paper').exists()).toBeTruthy()
   ));
 
   it('should show initial pulp resource value', () => (
-    expect(findResourceValue(wrapper, 'pulp')).toEqual('10')
+    expect(findResourceValue(wrapper, 'resource-purchasable-pulp')).toEqual('10')
   ));
 
   it('should show current pulp counter', () => (
-    expect(wrapper.exists('.resources__pulp')).toBeTruthy()
+    expect(getByTestId(wrapper, 'resource-purchasable-pulp').exists()).toBeTruthy()
   ));
 
   it('should show current funds', () => (
@@ -67,11 +70,11 @@ describe('App', () => {
       });
 
       it('should increase paper resource', () => (
-        expect(findResourceValue(wrapper, 'paper')).toEqual('1')
+        expect(findResourceValue(wrapper, 'resource-paper')).toEqual('1')
       ));
 
       it('should decrease pulp resource', () => {
-        expect(findResourceValue(wrapper, 'pulp')).toEqual('9')
+        expect(findResourceValue(wrapper, 'resource-purchasable-pulp')).toEqual('9')
       });
 
       describe('and there is no pulp left', () => {
@@ -85,11 +88,11 @@ describe('App', () => {
         });
 
         it('does not increase paper counter', () => (
-          expect(findResourceValue(wrapper, 'paper')).toEqual('0')
+          expect(findResourceValue(wrapper, 'resource-paper')).toEqual('0')
         ));
 
         it('does not decrease pulp counter', () => (
-          expect(findResourceValue(wrapper, 'pulp')).toEqual('0')
+          expect(findResourceValue(wrapper, 'resource-purchasable-pulp')).toEqual('0')
         ));
       });
   });
@@ -97,12 +100,14 @@ describe('App', () => {
   describe('when buy pulp button is clicked', () => {
     beforeEach(() => {
       act(() => {
-        wrapper.find('.resources__pulp-buy-button').simulate('click');
+        getByTestId(wrapper, 'resource-purchasable-pulp')
+          .find('.resource__buy-button')
+          .simulate('click');
       });
     });
 
     it('should increase pulp by current purchase rate', () => (
-      expectResourceValue(wrapper, 'pulp', '11')
+      expectResourceValue(wrapper, 'resource-purchasable-pulp', '11')
     ));
 
     it('should subtract current pulp price from funds', () => {
@@ -114,22 +119,31 @@ describe('App', () => {
       noFundsState.funds = 0;
       wrapper = mount(createApp(noFundsState));
       act(() => {
-        wrapper.find('.resources__pulp-buy-button').simulate('click');
+        getByTestId(wrapper, 'resource-purchasable-pulp')
+          .find('.resource__buy-button')
+          .simulate('click');
       });
 
-      expectResourceValue(wrapper, 'pulp', '10');
+      expectResourceValue(wrapper, 'resource-purchasable-pulp', '10');
     });
   });
 });
 
-const expectResourceValue = (wrapper: ReactWrapper, resourceClassId: string, expectedValue: string): void => (
-  expect(findResourceValue(wrapper, resourceClassId)).toEqual(expectedValue)
+const expectResourceValue = (wrapper: ReactWrapper, testId: string, expectedValue: string): void => (
+  expect(findResourceValue(wrapper, testId)).toEqual(expectedValue)
 );
 
 const expectFundsValue = (wrapper: ReactWrapper, expectedAmount: string): void => (
-  expect(wrapper.find('.resources__funds-amount').text()).toEqual(expectedAmount)
+  expect(getByTestId(wrapper, 'funds')
+    .find('.funds__amount').text())
+    .toEqual(expectedAmount)
 );
 
-const findResourceValue = (wrapper: ReactWrapper, resourceClassId: string): string | number => (
-  wrapper.find(`.resources__${resourceClassId}-value`).text()
+const findResourceValue = (wrapper: ReactWrapper, testId: string): string | number => (
+  getByTestId(wrapper, testId)
+    .find(`.resource__value`).text()
+);
+
+const getByTestId = (wrapper: ReactWrapper, testId: string): ReactWrapper => (
+  wrapper.find(`[data-test-id="${testId}"]`)
 );
