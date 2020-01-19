@@ -11,6 +11,7 @@ dependencies:
   react-combine-reducers: 1.0.2
   react-dom: 16.12.0_react@16.12.0
   react-scripts: 3.3.0_3789528a54be0f4afabb5f90bb07b9a8
+  spectre.css: 0.5.8
   typescript: 3.7.4
 devDependencies:
   '@types/enzyme': 3.10.4
@@ -10451,6 +10452,10 @@ packages:
       node: '>=6.0.0'
     resolution:
       integrity: sha512-HeZS3PBdMA+sZSu0qwpCxl3DeALD5ASx8pAX0jZdKXSpPWbQ6SYGnlg3BBmYLx5LtiZrmkAZfErCm2oECBcioA==
+  /spectre.css/0.5.8:
+    dev: false
+    resolution:
+      integrity: sha512-3N4WocWY+Dl6b3e5v3nsZYyp+VSDcBfGDzyyHw/H78ie9BoAhHkxmrhLxo9y8RadxYzVrPjfPdlev3hXEUzR2w==
   /split-string/3.1.0:
     dependencies:
       extend-shallow: 3.0.2
@@ -11934,6 +11939,7 @@ specifiers:
   react-combine-reducers: ^1.0.2
   react-dom: ^16.12.0
   react-scripts: 3.3.0
+  spectre.css: ^0.5.8
   tslint: ^5.20.1
   tslint-config-prettier: ^1.18.0
   typescript: ~3.7.2
