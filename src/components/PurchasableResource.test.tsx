@@ -11,11 +11,17 @@ describe('<PurchasableResource />', () => {
         name="Pulp"
         classNameId="pulp"
         value={9001}
+        currency={'£'}
+        price={10}
         onBuyClick={() => {}} // tslint:disable-line no-empty
       />);
   });
 
   it('renders ok', () => (
-    expect(purchasableResource.find('.resources__pulp-buy-button').text()).toBe('Buy')
+    expect(purchasableResource.find('.resources__buy-button-text').text()).toBe('Buy')
+  ));
+
+  it('shows purchase price', () => (
+    expect(purchasableResource.find('.resources__pulp-price').text()).toBe('(£10)')
   ));
 });

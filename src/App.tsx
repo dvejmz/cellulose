@@ -58,7 +58,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
           data: { paper: { ...resources.paper } },
         });
       }
-    }, 1000);
+    }, props.config.baseGameCycleDurationMs);
     return () => clearTimeout(timer);
   });
 
@@ -77,7 +77,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     <div className="App">
       <MakePaperButton onClick={handleMakePaperButtonClick} />
       <div className="resources">
-        <Funds amount={funds} currency={'£'} />
+        <Funds amount={funds} currency={props.config.currency} />
         <PlayerResource
           name="Paper"
           classNameId="paper"
@@ -87,6 +87,8 @@ const App: React.FC<AppProps> = (props: AppProps) => {
           name="Pulp"
           classNameId="pulp"
           value={resources.pulp.quantity}
+          currency={props.config.currency}
+          price={resources.pulp.price}
           onBuyClick={handleBuyPulpClick}
         />
       </div>
