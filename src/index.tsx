@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import createApp, { GameState } from './App';
 import './index.css';
