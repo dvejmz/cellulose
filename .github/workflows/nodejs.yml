@@ -12,16 +12,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: install pnpm
-      run: npm i -g pnpm
     - name: npm install, build, and test
       run: |
-        pnpm ci
-        pnpm run build --if-present
-        pnpm test
+        npm ci
+        npm run build --if-present
+        npm test
       env:
         CI: true
     - name: lint
-      run: pnpm run lint
+      run: npm run lint
       env:
         CI: true
