@@ -1,7 +1,7 @@
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import createApp, { GameState } from './App';
+import createApp, { AppConfig, GameState } from './App';
 import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 
@@ -10,6 +10,10 @@ describe('App', () => {
   let initialState: GameState;
 
   beforeEach(() => {
+    const appConfig: AppConfig = {
+      currency: '£',
+      baseGameCycleDurationMs: 1000,
+    };
     initialState = {
       funds: 100,
       resources: {
@@ -28,7 +32,7 @@ describe('App', () => {
       },
     };
 
-    wrapper = mount(createApp(initialState));
+    wrapper = mount(createApp(initialState, appConfig));
   });
 
   it('should show make paper button', () => (
@@ -102,7 +106,7 @@ describe('App', () => {
     ));
 
     it('should subtract current pulp price from funds', () => {
-      expectFundsValue(wrapper, '90');
+      expectFundsValue(wrapper, '90.00');
     });
 
     it('should not buy pulp if funds are insufficient', () => {

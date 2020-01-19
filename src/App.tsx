@@ -19,12 +19,19 @@ export interface Resources {
   paper: Resource;
   pulp: Resource;
 }
+
 export interface GameState {
   funds: number;
   resources: Resources;
 }
 
+export interface AppConfig {
+  currency: string;
+  baseGameCycleDurationMs: number;
+}
+
 interface AppProps {
+  config: AppConfig;
   initialState: GameState;
 }
 
@@ -87,9 +94,13 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   );
 }
 
-const createApp = (initialState: GameState) => {
+const createApp = (
+  initialState: GameState,
+  config: AppConfig = { currency: '£', baseGameCycleDurationMs: 1000 },
+) => {
   const appProps: AppProps = {
     initialState,
+    config,
   };
   return (<App {...appProps} />);
 }
