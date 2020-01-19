@@ -4,19 +4,19 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 const initialState: GameState = {
-  funds: 250,
+  funds: 0,
   resources: {
     paper: {
       name: 'Paper',
       quantity: 0,
-      price: .1,
+      price: .02,
       purchaseRate: 1,
     },
     pulp: {
       name: 'Pulp',
       quantity: 1000,
-      price: .01,
-      purchaseRate: 1,
+      price: 10,
+      purchaseRate: 1000,
     },
   },
 };
