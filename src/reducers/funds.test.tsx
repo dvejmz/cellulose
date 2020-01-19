@@ -43,5 +43,24 @@ describe('ResourcesReducer', () => {
         expect(reducedState).toBe(100)
       ));
     });
+
+  });
+
+  describe(Actions.RESOURCES_BUY_PULP, () => {
+    describe('when there are insufficient funds', () => {
+      beforeEach(() => {
+        initialState = getMockGameState({ funds: 2 });
+        reducedState = fundsReducer(
+          initialState.funds,
+          {
+            type: Actions.RESOURCES_BUY_PULP,
+            data: { pulp: { ...initialState.resources.pulp } },
+        });
+      });
+
+      it('should not decrease funds', () => (
+        expect(reducedState).toBe(2)
+      ));
+    });
   });
 });

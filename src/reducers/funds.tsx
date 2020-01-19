@@ -4,7 +4,10 @@ import { RootReducerAction } from '../App';
 const fundsReducer = (currentFunds: number, action: RootReducerAction): number => {
   switch (action.type) {
     case Actions.RESOURCES_BUY_PULP:
-      return currentFunds - action.data.pulp.price;
+      const pulpPrice = action.data.pulp.price;
+      return currentFunds >= pulpPrice
+        ? currentFunds - pulpPrice
+        : currentFunds;
     case Actions.RESOURCES_SELL_PAPER:
       return action.data.paper.quantity
         ? currentFunds + action.data.paper.price

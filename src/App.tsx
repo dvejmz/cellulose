@@ -67,7 +67,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   };
 
   const handleBuyPulpClick = () => {
-    if (!funds) {
+    if (funds < resources.pulp.price) {
       return;
     }
     dispatch({ type: RESOURCES_BUY_PULP, data: { pulp: resources.pulp }});
