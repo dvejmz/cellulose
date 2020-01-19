@@ -10,7 +10,7 @@ type PurchasableResourceProps = ResourceProps &
 
 const PurchasableResource: React.FC<PurchasableResourceProps> = (props: PurchasableResourceProps) => {
   return (
-    <div className={`resources__${props.classNameId}-container`}>
+    <div className={`resources__${props.classNameId}-container`} data-test-id={`resource-purchasable-${props.classNameId}`}>
       <Resource
         name={props.name}
         classNameId={props.classNameId}
