@@ -101,7 +101,7 @@ describe('App', () => {
     beforeEach(() => {
       act(() => {
         getByTestId(wrapper, 'resource-purchasable-pulp')
-          .find('.resource__buy-button')
+          .find('.resource-purchasable__buy-button')
           .simulate('click');
       });
     });
@@ -120,7 +120,7 @@ describe('App', () => {
       wrapper = mount(createApp(noFundsState));
       act(() => {
         getByTestId(wrapper, 'resource-purchasable-pulp')
-          .find('.resource__buy-button')
+          .find('.resource-purchasable__buy-button')
           .simulate('click');
       });
 

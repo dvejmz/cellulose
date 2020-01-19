@@ -23,10 +23,10 @@ describe('<PurchasableResource />', () => {
   ));
 
   it('shows buy text', () => (
-    expect(purchasableResource.find('.resource__buy-button').text()).toContain('Buy')
+    expect(purchasableResource.find('.resource-purchasable__buy-button').text()).toContain('Buy')
   ));
 
   it('shows resource price', () => (
-    expect(purchasableResource.find('.resource__buy-price').text()).toContain('(£10)')
+    expect(purchasableResource.find('.resource-purchasable__buy-price').text()).toContain('(£10)')
   ));
 });

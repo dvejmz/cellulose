@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 
+import 'spectre.css';
 import './App.scss';
 
 import combineReducers from 'react-combine-reducers';

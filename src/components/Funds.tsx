@@ -8,7 +8,7 @@ interface FundsProps {
 const Funds: React.FC<FundsProps> = (props: FundsProps) => {
   return (
     <div className="funds" data-test-id="funds">
-      Funds: <span className="funds__currency">{props.currency}</span><span className="funds__amount">{props.amount.toFixed(2)}</span>
+      <strong>Funds:</strong> <span className="funds__currency">{props.currency}</span><span className="funds__amount">{props.amount.toFixed(2)}</span>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Resource.scss';
 
 export interface ResourceProps {
   name: string;
@@ -10,7 +11,7 @@ export interface ResourceProps {
 const Resource: React.FC<ResourceProps> = (props: ResourceProps) => {
   return (
     <div className="resource" data-test-id={`resource-${props.classNameId}`}>
-      <span className={`resource__label capitalise`}>{props.name}</span>: <span className={`resource__value`}>{props.value}</span> <span className="resource__unit">{props.quantityUnit}</span>
+      <strong className={`resource__label capitalise`}>{props.name}</strong>: <span className={`resource__value`}>{props.value}</span> <span className="resource__unit">{props.quantityUnit}</span>
     </div>
   );
 };
