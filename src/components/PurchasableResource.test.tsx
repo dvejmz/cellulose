@@ -11,7 +11,8 @@ describe('<PurchasableResource />', () => {
         name="Pulp"
         classNameId="pulp"
         value={9001}
-        currency={'£'}
+        currency="£"
+        quantityUnit="kg"
         price={10}
         onBuyClick={() => {}} // tslint:disable-line no-empty
       />);

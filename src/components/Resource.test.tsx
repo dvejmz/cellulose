@@ -11,6 +11,7 @@ describe('<Resource />', () => {
       <Resource
         name="Paper"
         classNameId="paper"
+        quantityUnit="sheets"
         value={9001}
       />);
   });
@@ -25,6 +26,10 @@ describe('<Resource />', () => {
 
   it('shows resource value', () => {
     expect(resource.find('.resources__paper-value').text()).toBe('9001');
+  });
+
+  it('shows resource unit', () => {
+    expect(resource.find('.resource__unit').text()).toBe('sheets')
   });
 
   it('shows correct classNames', () => {

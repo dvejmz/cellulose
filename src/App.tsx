@@ -81,11 +81,13 @@ const App: React.FC<AppProps> = (props: AppProps) => {
         <PlayerResource
           name="Paper"
           classNameId="paper"
+          quantityUnit="sheets"
           value={resources.paper.quantity}
         />
         <PurchasableResource
           name="Pulp"
           classNameId="pulp"
+          quantityUnit="kg"
           value={resources.pulp.quantity}
           currency={props.config.currency}
           price={resources.pulp.price}

@@ -14,6 +14,7 @@ const PurchasableResource: React.FC<PurchasableResourceProps> = (props: Purchasa
       <Resource
         name={props.name}
         classNameId={props.classNameId}
+        quantityUnit={props.quantityUnit}
         value={props.value}
       />
       <button
