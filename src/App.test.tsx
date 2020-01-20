@@ -71,6 +71,14 @@ describe('App', () => {
     expect(wrapper.find(Funds).exists()).toBeTruthy()
   ));
 
+  it('should show current demand', () => {
+    expect(getByTestId(wrapper, 'demand').exists()).toBeTruthy();
+  });
+
+  it('should show current demand percentage', () => {
+    expect(getByTestId(wrapper, 'demand').text()).toContain('40.00%');
+  });
+
   describe('when make paper button is clicked', () => {
       beforeEach(() => {
         act(() => {

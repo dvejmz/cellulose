@@ -10,6 +10,7 @@ import MakePaperButton from './components/MakePaperButton';
 import PurchasableResource from './components/PurchasableResource';
 import PlayerResource from './components/Resource';
 import { Resource } from './models/resource';
+import demandReducer from './reducers/demand';
 import fundsReducer from './reducers/funds';
 import resourcesReducer from './reducers/resources';
 
@@ -58,9 +59,10 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   const [ rootReducer, rootState ] = combineReducers({
     funds: [ fundsReducer, initialState.funds ],
     resources: [ resourcesReducer, initialState.resources ],
+    demand: [ demandReducer, initialState.demand ],
   });
   const [ state, dispatch ]: any[] = useReducer(rootReducer, rootState);
-  const { resources, funds } = state;
+  const { resources, funds, demand } = state;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -101,6 +103,9 @@ const App: React.FC<AppProps> = (props: AppProps) => {
           onBuyClick={handleBuyPulpClick}
           classNameId="pulp"
         />
+      </div>
+      <div data-test-id="demand">
+        <strong>Demand:</strong> {demand.demandPct.toFixed(2)}%
       </div>
     </div>
   );
