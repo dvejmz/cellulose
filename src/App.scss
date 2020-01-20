@@ -1,3 +1,11 @@
+.capitalise {
+    text-transform: capitalize;
+}
+
+.margin-top-right {
+    margin: 0.5em 0.5em 0 0;
+}
+
 .App {
     margin-top: 2rem;
     margin-left: 2rem;
@@ -5,8 +13,4 @@
 
 .resources {
     margin-top: 1rem;
-}
-
-.capitalise {
-    text-transform: capitalize;
 }

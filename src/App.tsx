@@ -51,6 +51,8 @@ const {
   RESOURCES_BUY_PULP,
   RESOURCES_SELL_PAPER,
   RESOURCES_MAKE_PAPER,
+  RESOURCES_PAPER_PRICE_INCREASE,
+  RESOURCES_PAPER_PRICE_DECREASE,
   DEMAND_UPDATE,
 } = Actions;
 
@@ -66,15 +68,19 @@ const App: React.FC<AppProps> = (props: AppProps) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (resources.paper) {
-        dispatch({
-          type: RESOURCES_SELL_PAPER,
-          data: { paper: { ...resources.paper } },
-        });
-      }
+      sellPaper();
     }, props.config.baseGameCycleDurationMs);
     return () => clearTimeout(timer);
   });
+
+  const sellPaper = () => {
+    if (resources.paper) {
+      dispatch({
+        type: RESOURCES_SELL_PAPER,
+        data: { paper: { ...resources.paper } },
+      });
+    }
+  };
 
   const handleMakePaperButtonClick = () => {
     if (resources.pulp.quantity) {
@@ -86,6 +92,14 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     if (funds >= resources.pulp.price) {
       dispatch({ type: RESOURCES_BUY_PULP, data: { pulp: resources.pulp }});
     }
+  };
+
+  const handleIncPaperPriceClick = () => {
+    dispatch({ type: RESOURCES_PAPER_PRICE_INCREASE });
+  };
+
+  const handleDecPaperPriceClick = () => {
+    dispatch({ type: RESOURCES_PAPER_PRICE_DECREASE });
   };
 
   return (
@@ -104,8 +118,15 @@ const App: React.FC<AppProps> = (props: AppProps) => {
           classNameId="pulp"
         />
       </div>
-      <div data-test-id="demand">
+      <div className="margin-top-right" data-test-id="demand">
         <strong>Demand:</strong> {demand.demandPct.toFixed(2)}%
+      </div>
+      <div className="margin-top-right" data-test-id="resource-paper-price">
+        <strong>Paper Sale Price:</strong> {props.config.currency}{resources.paper.price.toFixed(2)} 
+        <div data-test-id="paper-price-adjusters">
+          <button data-test-id="paper-price-inc-button" onClick={handleIncPaperPriceClick}>+</button>
+          <button data-test-id="paper-price-dec-button" onClick={handleDecPaperPriceClick}>-</button>
+        </div>
       </div>
     </div>
   );

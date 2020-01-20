@@ -27,7 +27,7 @@ describe('App', () => {
           name: 'Paper',
           quantity: 0,
           quantityUnit: 'sheets',
-          price: 0,
+          price: 0.2,
           purchaseRate: 0,
         },
         pulp: {
@@ -77,6 +77,16 @@ describe('App', () => {
 
   it('should show current demand percentage', () => {
     expect(getByTestId(wrapper, 'demand').text()).toContain('40.00%');
+  });
+
+  it('should show paper price', () => {
+    expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.20');
+  });
+
+  it('should show price adjustment buttons', () => {
+    const adjusters = getByTestId(wrapper, 'paper-price-adjusters');
+    expect(adjusters.text()).toContain('+');
+    expect(adjusters.text()).toContain('-');
   });
 
   describe('when make paper button is clicked', () => {
@@ -142,6 +152,30 @@ describe('App', () => {
       });
 
       expectResourceValue(wrapper, 'resource-purchasable-pulp', '10');
+    });
+  });
+
+  describe('when paper price increase button is clicked', () => {
+    beforeEach(() => {
+      act(() => {
+        getByTestId(wrapper, 'paper-price-inc-button').simulate('click');
+      });
+    });
+
+    it('paper price should increase by set amount', () => {
+      expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.30');
+    });
+  });
+
+  describe('when paper price decrease button is clicked', () => {
+    beforeEach(() => {
+      act(() => {
+        getByTestId(wrapper, 'paper-price-dec-button').simulate('click');
+      });
+    });
+
+    it('paper price should increase by set amount', () => {
+      expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.10');
     });
   });
 });

@@ -48,6 +48,29 @@ const resourcesReducer = (currentResources: Resources, action: RootReducerAction
         },
       };
     }
+    case Actions.RESOURCES_PAPER_PRICE_INCREASE: {
+      return {
+        ...currentResources,
+        paper: {
+          ...currentResources.paper,
+          price: currentResources.paper.price + .1,
+        },
+      };
+    }
+    case Actions.RESOURCES_PAPER_PRICE_DECREASE: {
+      const decreasedPaperPrice = currentResources.paper.price - .1;
+      return {
+        ...currentResources,
+        paper: {
+          ...currentResources.paper,
+          price: (
+            decreasedPaperPrice < 0
+            ? currentResources.paper.price
+            : decreasedPaperPrice
+          ),
+        },
+      };
+    }
     case Actions.DEMAND_UPDATE:
       return {
         ...currentResources,
