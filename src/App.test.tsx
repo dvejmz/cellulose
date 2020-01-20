@@ -19,12 +19,14 @@ describe('App', () => {
         paper: {
           name: 'Paper',
           quantity: 0,
+          quantityUnit: 'sheets',
           price: 0,
           purchaseRate: 0,
         },
         pulp: {
           name: 'Pulp',
           quantity: 10,
+          quantityUnit: 'kg',
           price: 10,
           purchaseRate: 1,
         },

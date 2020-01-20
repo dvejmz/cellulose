@@ -13,17 +13,12 @@ type PurchasableResourceProps = ResourceProps &
 const PurchasableResource: React.FC<PurchasableResourceProps> = (props: PurchasableResourceProps) => {
   return (
     <div className={`resource-purchasable`} data-test-id={`resource-purchasable-${props.classNameId}`}>
-      <Resource
-        name={props.name}
-        classNameId={props.classNameId}
-        quantityUnit={props.quantityUnit}
-        value={props.value}
-      />
+      <Resource {...props} />
       <button
         className={`resource-purchasable__buy-button btn btn-sm`}
         onClick={props.onBuyClick}
       >
-        Buy <span className="resource-purchasable__buy-price">({props.currency + props.price})</span>
+        Buy <span className="resource-purchasable__buy-price">({`${props.currency}${props.price}`})</span>
       </button>
     </div>
   );

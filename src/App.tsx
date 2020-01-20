@@ -83,19 +83,14 @@ const App: React.FC<AppProps> = (props: AppProps) => {
       <div className="resources">
         <Funds amount={funds} currency={props.config.currency} />
         <PlayerResource
-          name="Paper"
+          {...resources.paper}
           classNameId="paper"
-          quantityUnit="sheets"
-          value={resources.paper.quantity}
         />
         <PurchasableResource
-          name="Pulp"
-          classNameId="pulp"
-          quantityUnit="kg"
-          value={resources.pulp.quantity}
+          {...resources.pulp}
           currency={props.config.currency}
-          price={resources.pulp.price}
           onBuyClick={handleBuyPulpClick}
+          classNameId="pulp"
         />
       </div>
     </div>

@@ -11,7 +11,9 @@ describe('<Resource />', () => {
         name="Paper"
         classNameId="paper"
         quantityUnit="sheets"
-        value={9001}
+        quantity={9001}
+        price={0}
+        purchaseRate={1}
       />);
   });
 

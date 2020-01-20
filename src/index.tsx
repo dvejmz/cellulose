@@ -7,14 +7,16 @@ const initialState: GameState = {
   funds: 0,
   resources: {
     paper: {
-      name: 'Paper',
+      name: 'Unsold Paper',
       quantity: 0,
+      quantityUnit: 'sheets',
       price: .02,
       purchaseRate: 1,
     },
     pulp: {
       name: 'Pulp',
       quantity: 1000,
+      quantityUnit: 'kg',
       price: 10,
       purchaseRate: 1000,
     },
