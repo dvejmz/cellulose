@@ -1,5 +1,6 @@
 import * as Actions from '../actions';
 import { Resources, RootReducerAction } from '../App';
+import { getPurchaseRateFromDemand } from '../game/demand';
 
 const getUpdatedPaperCounter = (resources: Resources): number => (
   resources.pulp.quantity 
@@ -47,6 +48,14 @@ const resourcesReducer = (currentResources: Resources, action: RootReducerAction
         },
       };
     }
+    case Actions.DEMAND_UPDATE:
+      return {
+        ...currentResources,
+        paper: {
+          ...currentResources.paper,
+          purchaseRate: getPurchaseRateFromDemand(action.data.newDemandPct),
+        }
+      };
     default:
       return currentResources;
   }

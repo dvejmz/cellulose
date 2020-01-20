@@ -13,8 +13,15 @@ describe('App', () => {
       currency: '£',
       baseGameCycleDurationMs: 1000,
     };
+
     initialState = {
       funds: 100,
+      demand: {
+        demandPct: 40.0,
+        buyFactor: 2.0,
+        demandSlope: -10/12,
+        price: 0.2,
+      },
       resources: {
         paper: {
           name: 'Paper',

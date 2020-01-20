@@ -44,4 +44,23 @@ describe('ResourcesReducer', () => {
       expect(reducedState.paper.quantity).toBe(9)
     ));
   });
+
+  describe(Actions.DEMAND_UPDATE, () => {
+    beforeEach(() => {
+      initialState = getMockResources({ paper: { quantity: 10 }});
+      reducedState = resourcesReducer(
+        initialState,
+        {
+          type: Actions.DEMAND_UPDATE,
+          data:
+          {
+            newDemandPct: 45.0,
+          }
+      });
+    });
+
+    it('should update paper purchase rate to new rate', () => {
+      expect(reducedState.paper.purchaseRate).toBe(4.5);
+    });
+  });
 });

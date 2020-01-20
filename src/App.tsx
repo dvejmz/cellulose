@@ -23,9 +23,17 @@ export interface Resources {
   pulp: Resource;
 }
 
+export interface Demand {
+  demandPct: number;
+  buyFactor: number;
+  demandSlope: number;
+  price: number;
+}
+
 export interface GameState {
   funds: number;
   resources: Resources;
+  demand: Demand;
 }
 
 export interface AppConfig {
@@ -42,6 +50,7 @@ const {
   RESOURCES_BUY_PULP,
   RESOURCES_SELL_PAPER,
   RESOURCES_MAKE_PAPER,
+  DEMAND_UPDATE,
 } = Actions;
 
 const App: React.FC<AppProps> = (props: AppProps) => {
