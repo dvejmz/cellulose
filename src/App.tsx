@@ -53,6 +53,7 @@ const {
   RESOURCES_MAKE_PAPER,
   RESOURCES_PAPER_PRICE_INCREASE,
   RESOURCES_PAPER_PRICE_DECREASE,
+  RESOURCES_PAPER_PRICE_UPDATE,
   DEMAND_UPDATE,
 } = Actions;
 
@@ -95,11 +96,17 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   };
 
   const handleIncPaperPriceClick = () => {
+    console.log(resources.paper)
     dispatch({ type: RESOURCES_PAPER_PRICE_INCREASE });
+    console.log(resources.paper)
+    dispatch({ type: RESOURCES_PAPER_PRICE_UPDATE, data: { newPrice: resources.paper.price }});
+    dispatch({ type: DEMAND_UPDATE, data: { newDemandPct: demand.demandPct } });
   };
 
   const handleDecPaperPriceClick = () => {
     dispatch({ type: RESOURCES_PAPER_PRICE_DECREASE });
+    dispatch({ type: RESOURCES_PAPER_PRICE_UPDATE, data: { newPrice: resources.paper.price }});
+    dispatch({ type: DEMAND_UPDATE, data: { newDemandPct: demand.demandPct } });
   };
 
   return (
@@ -109,6 +116,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
         <Funds amount={funds} currency={props.config.currency} />
         <PlayerResource
           {...resources.paper}
+          showDecimals={false}
           classNameId="paper"
         />
         <PurchasableResource

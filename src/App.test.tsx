@@ -19,7 +19,7 @@ describe('App', () => {
       demand: {
         demandPct: 40.0,
         buyFactor: 2.0,
-        demandSlope: -10/12,
+        demandSlope: 10/12,
         price: 0.2,
       },
       resources: {
@@ -165,6 +165,10 @@ describe('App', () => {
     it('paper price should increase by set amount', () => {
       expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.30');
     });
+
+    it('demand percentage decreases', () => {
+      expect(getByTestId(wrapper, 'demand').text()).toContain('1.75%');
+    });
   });
 
   describe('when paper price decrease button is clicked', () => {
@@ -176,6 +180,10 @@ describe('App', () => {
 
     it('paper price should increase by set amount', () => {
       expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.10');
+    });
+
+    it('demand percentage increases', () => {
+      expect(getByTestId(wrapper, 'demand').text()).toContain('1.91%');
     });
   });
 });

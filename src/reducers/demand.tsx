@@ -16,6 +16,14 @@ const demandReducer = (currentDemand: Demand, action: RootReducerAction): Demand
         demandPct: getDemand(currentDemand.buyFactor, action.data.newDemandSlope, currentDemand.price),
       };
     }
+    case Actions.RESOURCES_PAPER_PRICE_UPDATE:
+      console.log(action)
+      const r = {
+        ...currentDemand,
+        demandPct: getDemand(currentDemand.buyFactor, currentDemand.demandSlope, action.data.newPrice),
+      };
+      console.log(r)
+      return r;
     default:
       return currentDemand;
   }

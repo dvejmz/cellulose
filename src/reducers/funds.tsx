@@ -10,7 +10,7 @@ const fundsReducer = (currentFunds: number, action: RootReducerAction): number =
         : currentFunds;
     case Actions.RESOURCES_SELL_PAPER:
       return action.data.paper.quantity
-        ? currentFunds + action.data.paper.price
+        ? currentFunds + (action.data.paper.price * action.data.paper.purchaseRate)
         : currentFunds;
     default:
       return currentFunds;

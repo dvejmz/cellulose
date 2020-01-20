@@ -43,19 +43,21 @@ const resourcesReducer = (currentResources: Resources, action: RootReducerAction
           ...currentResources.paper,
           quantity:
             currentResources.paper.quantity
-            ? currentResources.paper.quantity - 1
+            ? currentResources.paper.quantity - currentResources.paper.purchaseRate
             : currentResources.paper.quantity,
         },
       };
     }
     case Actions.RESOURCES_PAPER_PRICE_INCREASE: {
-      return {
+      const r = {
         ...currentResources,
         paper: {
           ...currentResources.paper,
           price: currentResources.paper.price + .1,
         },
       };
+      //console.log(r)
+      return r;
     }
     case Actions.RESOURCES_PAPER_PRICE_DECREASE: {
       const decreasedPaperPrice = currentResources.paper.price - .1;

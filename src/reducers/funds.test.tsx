@@ -12,7 +12,7 @@ describe('ResourcesReducer', () => {
       beforeEach(() => {
         initialState = getMockGameState({
           resources: {
-            paper: getMockPaperResource({ quantity: 10 })
+            paper: getMockPaperResource({ quantity: 10, purchaseRate: 3, price: 2 })
           }
         });
         reducedState = fundsReducer(
@@ -23,8 +23,8 @@ describe('ResourcesReducer', () => {
         });
       });
 
-      it('should increase funds by paper price if there is paper', () => (
-        expect(reducedState).toBe(101)
+      it('should increase funds by amount and price of paper sold', () => (
+        expect(reducedState).toBe(106)
       ));
     });
 

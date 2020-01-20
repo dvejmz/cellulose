@@ -8,7 +8,7 @@ const initialState: GameState = {
   demand: {
     demandPct: 10.0,
     buyFactor: 2.0,
-    demandSlope: -10/12,
+    demandSlope: 10/12,
     price: .02,
   },
   resources: {
