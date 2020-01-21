@@ -13,4 +13,14 @@
 
 .resources {
     margin-top: 1rem;
+
+    &__paper-price-adjusters {
+        display: inline-block;
+        margin-left: 0.5em;
+    }
+
+    &__paper-price-adj {
+        margin-right: 0.25em;
+    }
 }
+
