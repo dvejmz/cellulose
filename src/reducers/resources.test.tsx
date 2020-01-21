@@ -24,6 +24,26 @@ describe('ResourcesReducer', () => {
     it('should decrease paper quantity by sale rate amount', () => (
       expect(reducedState.paper.quantity).toBe(7)
     ));
+
+    [
+      { quantity: 10, purchaseRate: 12, expected: 0 },
+      { quantity: 0, purchaseRate: 12, expected: 0 },
+      { quantity: 2, purchaseRate: 2, expected: 0 },
+    ].forEach(t => {
+        it('should not decrease paper quantity below zero', () => {
+        initialState = getMockResources({ paper: { quantity: t.quantity, purchaseRate: t.purchaseRate }});
+        reducedState = resourcesReducer(
+          initialState,
+          {
+            type: Actions.RESOURCES_SELL_PAPER,
+            data:
+            {
+              paper: { ...initialState.paper },
+            }
+        });
+        expect(reducedState.paper.quantity).toBe(t.expected);
+      });
+    });
   });
 
   describe(Actions.RESOURCES_BUY_PULP, () => {

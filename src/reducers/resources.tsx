@@ -37,14 +37,12 @@ const resourcesReducer = (currentResources: Resources, action: RootReducerAction
       };
     }
     case Actions.RESOURCES_SELL_PAPER: {
+      const newPaperQuantity = currentResources.paper.quantity - currentResources.paper.purchaseRate;
       return {
         ...currentResources,
         paper: {
           ...currentResources.paper,
-          quantity:
-            currentResources.paper.quantity
-            ? currentResources.paper.quantity - currentResources.paper.purchaseRate
-            : currentResources.paper.quantity,
+          quantity: Math.max(newPaperQuantity, 0),
         },
       };
     }
