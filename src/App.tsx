@@ -96,17 +96,11 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   };
 
   const handleIncPaperPriceClick = () => {
-    console.log(resources.paper)
-    dispatch({ type: RESOURCES_PAPER_PRICE_INCREASE });
-    console.log(resources.paper)
-    dispatch({ type: RESOURCES_PAPER_PRICE_UPDATE, data: { newPrice: resources.paper.price }});
-    dispatch({ type: DEMAND_UPDATE, data: { newDemandPct: demand.demandPct } });
+    dispatch({ type: RESOURCES_PAPER_PRICE_INCREASE, data: { dispatch } });
   };
 
   const handleDecPaperPriceClick = () => {
-    dispatch({ type: RESOURCES_PAPER_PRICE_DECREASE });
-    dispatch({ type: RESOURCES_PAPER_PRICE_UPDATE, data: { newPrice: resources.paper.price }});
-    dispatch({ type: DEMAND_UPDATE, data: { newDemandPct: demand.demandPct } });
+    dispatch({ type: RESOURCES_PAPER_PRICE_DECREASE, data: { dispatch } });
   };
 
   return (

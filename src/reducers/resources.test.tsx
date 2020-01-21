@@ -71,6 +71,7 @@ describe('ResourcesReducer', () => {
         initialState,
         {
           type: Actions.RESOURCES_PAPER_PRICE_INCREASE,
+          data: { dispatch: jest.fn() },
       });
     });
 
@@ -86,6 +87,7 @@ describe('ResourcesReducer', () => {
         initialState,
         {
           type: Actions.RESOURCES_PAPER_PRICE_DECREASE,
+          data: { dispatch: jest.fn() },
       });
     });
 
@@ -100,6 +102,7 @@ describe('ResourcesReducer', () => {
         initialState,
         {
           type: Actions.RESOURCES_PAPER_PRICE_DECREASE,
+          data: { dispatch: jest.fn() },
         });
       });
 

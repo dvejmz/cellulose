@@ -17,13 +17,12 @@ const demandReducer = (currentDemand: Demand, action: RootReducerAction): Demand
       };
     }
     case Actions.RESOURCES_PAPER_PRICE_UPDATE:
-      console.log(action)
-      const r = {
+      const state = {
         ...currentDemand,
         demandPct: getDemand(currentDemand.buyFactor, currentDemand.demandSlope, action.data.newPrice),
       };
-      console.log(r)
-      return r;
+      action.data.dispatch({ type: Actions.DEMAND_UPDATE, data: { newDemandPct: state.demandPct, dispatch: action.data.dispatch }});
+      return state;
     default:
       return currentDemand;
   }

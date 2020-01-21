@@ -183,7 +183,9 @@ describe('App', () => {
     });
 
     it('demand percentage increases', () => {
-      expect(getByTestId(wrapper, 'demand').text()).toContain('1.91%');
+      // It's actually 1.916666 ... , but I'm not too bothered about rounding
+      // errors for now.
+      expect(getByTestId(wrapper, 'demand').text()).toContain('1.92%');
     });
   });
 });

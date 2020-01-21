@@ -49,19 +49,24 @@ const resourcesReducer = (currentResources: Resources, action: RootReducerAction
       };
     }
     case Actions.RESOURCES_PAPER_PRICE_INCREASE: {
-      const r = {
+      const state = {
         ...currentResources,
         paper: {
           ...currentResources.paper,
           price: currentResources.paper.price + .1,
         },
       };
-      //console.log(r)
-      return r;
+      action.data.dispatch({
+        type: Actions.RESOURCES_PAPER_PRICE_UPDATE,
+        data: {
+          newPrice: state.paper.price,
+          dispatch: action.data.dispatch,
+        }});
+      return state;
     }
     case Actions.RESOURCES_PAPER_PRICE_DECREASE: {
       const decreasedPaperPrice = currentResources.paper.price - .1;
-      return {
+      const state = {
         ...currentResources,
         paper: {
           ...currentResources.paper,
@@ -72,6 +77,13 @@ const resourcesReducer = (currentResources: Resources, action: RootReducerAction
           ),
         },
       };
+      action.data.dispatch({
+        type: Actions.RESOURCES_PAPER_PRICE_UPDATE,
+        data: { 
+          newPrice: state.paper.price,
+          dispatch: action.data.dispatch ,
+        }});
+      return state;
     }
     case Actions.DEMAND_UPDATE:
       return {
