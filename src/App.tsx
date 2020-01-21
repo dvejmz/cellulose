@@ -126,8 +126,8 @@ const App: React.FC<AppProps> = (props: AppProps) => {
       <div className="margin-top-right" data-test-id="resource-paper-price">
         <strong>Paper Sale Price:</strong> {props.config.currency}{resources.paper.price.toFixed(2)} 
         <div className="resources__paper-price-adjusters" data-test-id="paper-price-adjusters">
-          <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-inc-button " onClick={handleIncPaperPriceClick}>+</button>
-          <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-dec-button btn btn-sm" onClick={handleDecPaperPriceClick}>-</button>
+          <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-inc-button" onClick={handleIncPaperPriceClick}>+</button>
+          <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-dec-button" onClick={handleDecPaperPriceClick}>-</button>
         </div>
       </div>
     </div>
