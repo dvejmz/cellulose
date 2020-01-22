@@ -1,13 +1,20 @@
 import { getDemand, getPurchaseRateFromDemand } from './demand';
 
 describe('getDemand', () => {
-  it('returns correct demand', () => {
-    const buyFactor = 6;
-    const demandSlope = -1/2;
-    const price = .2;
-    const expected = 6.1;
+  [
+    { buyFactor: 6.0, demandSlope: -1/2, price: .2, expected: 6.1 },
+    // It should not return negative demand
+    { buyFactor: 2.0, demandSlope: 10/12, price: 5.2, expected: 0 },
+  ].forEach(t => {
+    it('returns correct demand', () => {
+      expect(getDemand(t.buyFactor, t.demandSlope, t.price)).toBe(t.expected);
+    });
+  });
+});
 
-    expect(getDemand(buyFactor, demandSlope, price)).toBe(expected);
+describe('getPurchaseRateFromDemand', () => {
+  it('returns correct rate', () => {
+    expect(getPurchaseRateFromDemand(10.0)).toBe(1.0);
   });
 });
 

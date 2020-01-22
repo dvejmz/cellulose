@@ -3,7 +3,7 @@ export const getDemand = (
   demandSlope: number,
   price: number
 ): number => (
-  buyFactor - (demandSlope * price)
+  Math.max(buyFactor - (demandSlope * price), 0)
 );
 
 export const getPurchaseRateFromDemand = (demand: number): number => (

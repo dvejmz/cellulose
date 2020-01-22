@@ -20,6 +20,7 @@ const demandReducer = (currentDemand: Demand, action: RootReducerAction): Demand
       const state = {
         ...currentDemand,
         demandPct: getDemand(currentDemand.buyFactor, currentDemand.demandSlope, action.data.newPrice),
+        price: action.data.newPrice,
       };
       action.data.dispatch({ type: Actions.DEMAND_UPDATE, data: { newDemandPct: state.demandPct, dispatch: action.data.dispatch }});
       return state;
