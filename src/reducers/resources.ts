@@ -51,7 +51,7 @@ const resourcesReducer = (currentResources: Resources, action: RootReducerAction
         ...currentResources,
         paper: {
           ...currentResources.paper,
-          price: currentResources.paper.price + .1,
+          price: currentResources.paper.price + action.data.step,
         },
       };
       action.data.dispatch({
@@ -59,11 +59,11 @@ const resourcesReducer = (currentResources: Resources, action: RootReducerAction
         data: {
           newPrice: state.paper.price,
           dispatch: action.data.dispatch,
-        }});
+      }});
       return state;
     }
     case Actions.RESOURCES_PAPER_PRICE_DECREASE: {
-      const decreasedPaperPrice = currentResources.paper.price - .1;
+      const decreasedPaperPrice = currentResources.paper.price - action.data.step;
       const state = {
         ...currentResources,
         paper: {

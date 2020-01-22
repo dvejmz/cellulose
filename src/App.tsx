@@ -40,6 +40,7 @@ export interface GameState {
 export interface AppConfig {
   currency: string;
   baseGameCycleDurationMs: number;
+  paperPriceChangeStep: number;
 }
 
 interface AppProps {
@@ -66,11 +67,24 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   const { resources, funds, demand } = state;
 
   useEffect(() => {
+    calculateInitialGameState();
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       sellPaper();
     }, props.config.baseGameCycleDurationMs);
     return () => clearTimeout(timer);
   });
+
+  const calculateInitialGameState = () => {
+    dispatch({
+      type: Actions.RESOURCES_PAPER_PRICE_UPDATE,
+      data: {
+        newPrice: resources.paper.price,
+        dispatch,
+    }});
+  };
 
   const sellPaper = () => {
     if (resources.paper) {
@@ -94,11 +108,11 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   };
 
   const handleIncPaperPriceClick = () => {
-    dispatch({ type: RESOURCES_PAPER_PRICE_INCREASE, data: { dispatch } });
+    dispatch({ type: RESOURCES_PAPER_PRICE_INCREASE, data: { dispatch, step: props.config.paperPriceChangeStep }});
   };
 
   const handleDecPaperPriceClick = () => {
-    dispatch({ type: RESOURCES_PAPER_PRICE_DECREASE, data: { dispatch } });
+    dispatch({ type: RESOURCES_PAPER_PRICE_DECREASE, data: { dispatch, step: props.config.paperPriceChangeStep } });
   };
 
   return (
@@ -134,7 +148,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
 
 const createApp = (
   initialState: GameState,
-  config: AppConfig = { currency: '£', baseGameCycleDurationMs: 1000 },
+  config: AppConfig = { currency: '£', baseGameCycleDurationMs: 1000, paperPriceChangeStep: .05 },
 ) => {
   const appProps: AppProps = {
     initialState,

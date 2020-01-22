@@ -6,18 +6,18 @@ import * as serviceWorker from './serviceWorker';
 const initialState: GameState = {
   funds: 0,
   demand: {
-    demandPct: 10.0,
+    demandPct: 0,
     buyFactor: 2.0,
     demandSlope: 10/12,
-    price: .02,
+    price: 0,
   },
   resources: {
     paper: {
       name: 'Unsold Paper',
       quantity: 0,
       quantityUnit: 'sheets',
-      price: .02,
-      purchaseRate: 1,
+      price: 0,
+      purchaseRate: 0,
     },
     pulp: {
       name: 'Pulp',

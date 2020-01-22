@@ -91,12 +91,12 @@ describe('ResourcesReducer', () => {
         initialState,
         {
           type: Actions.RESOURCES_PAPER_PRICE_INCREASE,
-          data: { dispatch: jest.fn() },
+          data: { dispatch: jest.fn(), step: .05 },
       });
     });
 
     it('should increase paper price', () => {
-      expect(reducedState.paper.price).toBe(1.1);
+      expect(reducedState.paper.price).toBe(1.05);
     });
   });
 
@@ -107,12 +107,12 @@ describe('ResourcesReducer', () => {
         initialState,
         {
           type: Actions.RESOURCES_PAPER_PRICE_DECREASE,
-          data: { dispatch: jest.fn() },
+          data: { dispatch: jest.fn(), step: .05 },
       });
     });
 
     it('should increase paper price', () => {
-      expect(reducedState.paper.price).toBe(0.9);
+      expect(reducedState.paper.price).toBe(0.95);
     });
 
     describe('and paper price is less than decrease step', () => {
@@ -122,7 +122,7 @@ describe('ResourcesReducer', () => {
         initialState,
         {
           type: Actions.RESOURCES_PAPER_PRICE_DECREASE,
-          data: { dispatch: jest.fn() },
+          data: { dispatch: jest.fn(), step: .05 },
         });
       });
 

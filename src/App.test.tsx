@@ -12,6 +12,7 @@ describe('App', () => {
     const appConfig: AppConfig = {
       currency: '£',
       baseGameCycleDurationMs: 1000,
+      paperPriceChangeStep: .05,
     };
 
     initialState = {
@@ -76,7 +77,7 @@ describe('App', () => {
   });
 
   it('should show current demand percentage', () => {
-    expect(getByTestId(wrapper, 'demand').text()).toContain('40.00%');
+    expect(getByTestId(wrapper, 'demand').text()).toContain('1.83%');
   });
 
   it('should show paper price', () => {
@@ -163,11 +164,11 @@ describe('App', () => {
     });
 
     it('paper price should increase by set amount', () => {
-      expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.30');
+      expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.25');
     });
 
     it('demand percentage decreases', () => {
-      expect(getByTestId(wrapper, 'demand').text()).toContain('1.75%');
+      expect(getByTestId(wrapper, 'demand').text()).toContain('1.79%');
     });
   });
 
@@ -178,14 +179,14 @@ describe('App', () => {
       });
     });
 
-    it('paper price should increase by set amount', () => {
-      expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.10');
+    it('paper price should decrease by set amount', () => {
+      expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.15');
     });
 
     it('demand percentage increases', () => {
-      // It's actually 1.916666 ... , but I'm not too bothered about rounding
+      // It's actually 1.875 ... , but I'm not too bothered about rounding
       // errors for now.
-      expect(getByTestId(wrapper, 'demand').text()).toContain('1.92%');
+      expect(getByTestId(wrapper, 'demand').text()).toContain('1.88%');
     });
   });
 });
