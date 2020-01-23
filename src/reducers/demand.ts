@@ -4,25 +4,31 @@ import { getDemand } from '../game/demand';
 
 const demandReducer = (currentDemand: Demand, action: RootReducerAction): Demand => {
   switch(action.type) {
-    case Actions.DEMAND_BUY_FACTOR_UPDATE: {
-      return {
-        ...currentDemand,
-        demandPct: getDemand(action.data.newBuyFactor, currentDemand.demandSlope, currentDemand.price),
-      }
-    }
-    case Actions.DEMAND_SLOPE_UPDATE: {
-      return {
-        ...currentDemand,
-        demandPct: getDemand(currentDemand.buyFactor, action.data.newDemandSlope, currentDemand.price),
-      };
-    }
     case Actions.RESOURCES_PAPER_PRICE_UPDATE:
+      const prevDemandPct = currentDemand.demandPct;
+      const prevPrice = currentDemand.price;
       const state = {
         ...currentDemand,
-        demandPct: getDemand(currentDemand.buyFactor, currentDemand.demandSlope, action.data.newPrice),
+        demandPct: getDemand(
+          // These values serve as the seed for the demand curve and price elasticity
+          // functions used to calculate purchase rates
+          0.05, // high demand price
+          50, // high demand qty
+          0.1,   // low demand price
+          40,  // low demand qty
+          action.data.newPrice
+        ),
         price: action.data.newPrice,
       };
-      action.data.dispatch({ type: Actions.DEMAND_UPDATE, data: { newDemandPct: state.demandPct, dispatch: action.data.dispatch }});
+      action.data.dispatch({
+        type: Actions.DEMAND_UPDATE,
+        data: {
+          prevDemandPct,
+          newDemandPct: state.demandPct,
+          prevPrice,
+          newPrice: state.price,
+          dispatch: action.data.dispatch,
+        }});
       return state;
     default:
       return currentDemand;

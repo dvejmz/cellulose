@@ -26,8 +26,6 @@ export interface Resources {
 
 export interface Demand {
   demandPct: number;
-  buyFactor: number;
-  demandSlope: number;
   price: number;
 }
 
@@ -67,7 +65,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   const { resources, funds, demand } = state;
 
   useEffect(() => {
-    calculateInitialGameState();
+    initialiseGameState();
   }, []);
 
   useEffect(() => {
@@ -77,11 +75,26 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     return () => clearTimeout(timer);
   });
 
-  const calculateInitialGameState = () => {
+  const initialiseGameState = () => {
+    // TODO: this is a weird hack where we
+    // dispatch two fake price update events
+    // to give the demand engine enough data
+    // points to generate demand data
+    // Otherwise, if the player clicks on make
+    // paper right after launching the game,
+    // no sales will take place as purchase rate
+    // will be uninitalised
     dispatch({
       type: Actions.RESOURCES_PAPER_PRICE_UPDATE,
       data: {
-        newPrice: resources.paper.price,
+        newPrice: resources.paper.price + .01,
+        dispatch,
+    }});
+
+    dispatch({
+      type: Actions.RESOURCES_PAPER_PRICE_UPDATE,
+      data: {
+        newPrice: resources.paper.price - .01,
         dispatch,
     }});
   };
@@ -148,7 +161,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
 
 const createApp = (
   initialState: GameState,
-  config: AppConfig = { currency: '£', baseGameCycleDurationMs: 1000, paperPriceChangeStep: .05 },
+  config: AppConfig = { currency: '£', baseGameCycleDurationMs: 1000, paperPriceChangeStep: .01 },
 ) => {
   const appProps: AppProps = {
     initialState,

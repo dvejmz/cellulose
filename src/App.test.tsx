@@ -19,8 +19,6 @@ describe('App', () => {
       funds: 100,
       demand: {
         demandPct: 40.0,
-        buyFactor: 2.0,
-        demandSlope: 10/12,
         price: 0.2,
       },
       resources: {
@@ -77,7 +75,7 @@ describe('App', () => {
   });
 
   it('should show current demand percentage', () => {
-    expect(getByTestId(wrapper, 'demand').text()).toContain('1.83%');
+    expect(getByTestId(wrapper, 'demand').text()).toContain('22.00%');
   });
 
   it('should show paper price', () => {
@@ -168,7 +166,7 @@ describe('App', () => {
     });
 
     it('demand percentage decreases', () => {
-      expect(getByTestId(wrapper, 'demand').text()).toContain('1.79%');
+      expect(getByTestId(wrapper, 'demand').text()).toContain('10.00%');
     });
   });
 
@@ -184,9 +182,7 @@ describe('App', () => {
     });
 
     it('demand percentage increases', () => {
-      // It's actually 1.875 ... , but I'm not too bothered about rounding
-      // errors for now.
-      expect(getByTestId(wrapper, 'demand').text()).toContain('1.88%');
+      expect(getByTestId(wrapper, 'demand').text()).toContain('30.00%');
     });
   });
 });

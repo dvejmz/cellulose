@@ -79,7 +79,7 @@ const resourcesReducer = (currentResources: Resources, action: RootReducerAction
         type: Actions.RESOURCES_PAPER_PRICE_UPDATE,
         data: { 
           newPrice: state.paper.price,
-          dispatch: action.data.dispatch ,
+          dispatch: action.data.dispatch,
         }});
       return state;
     }
@@ -88,7 +88,12 @@ const resourcesReducer = (currentResources: Resources, action: RootReducerAction
         ...currentResources,
         paper: {
           ...currentResources.paper,
-          purchaseRate: getPurchaseRateFromDemand(action.data.newDemandPct),
+          purchaseRate: getPurchaseRateFromDemand(
+            action.data.prevDemandPct,
+            action.data.newDemandPct,
+            action.data.prevPrice,
+            action.data.newPrice
+          ),
         }
       };
     default:

@@ -74,13 +74,16 @@ describe('ResourcesReducer', () => {
           type: Actions.DEMAND_UPDATE,
           data:
           {
-            newDemandPct: 45.0,
+            newDemandPct: 40.0,
+            prevDemandPct: 30.0,
+            prevPrice: 0.05,
+            newPrice: 0.25,
           }
       });
     });
 
     it('should update paper purchase rate to new rate', () => {
-      expect(reducedState.paper.purchaseRate).toBe(4.5);
+      expect(reducedState.paper.purchaseRate.toString()).toContain(4.666);
     });
   });
 

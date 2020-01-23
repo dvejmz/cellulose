@@ -9,8 +9,9 @@ const fundsReducer = (currentFunds: number, action: RootReducerAction): number =
         ? currentFunds - pulpPrice
         : currentFunds;
     case Actions.RESOURCES_SELL_PAPER:
+      const purchaseRate = Math.min(action.data.paper.purchaseRate, action.data.paper.quantity)
       return action.data.paper.quantity
-        ? currentFunds + (action.data.paper.price * action.data.paper.purchaseRate)
+        ? currentFunds + (action.data.paper.price * purchaseRate)
         : currentFunds;
     default:
       return currentFunds;

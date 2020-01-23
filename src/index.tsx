@@ -3,20 +3,19 @@ import createApp, { GameState } from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
+const initialPaperPrice = 0.1;
 const initialState: GameState = {
   funds: 0,
   demand: {
     demandPct: 0,
-    buyFactor: 2.0,
-    demandSlope: 10/12,
-    price: 0,
+    price: initialPaperPrice,
   },
   resources: {
     paper: {
       name: 'Unsold Paper',
       quantity: 0,
       quantityUnit: 'sheets',
-      price: 0,
+      price: initialPaperPrice,
       purchaseRate: 0,
     },
     pulp: {
