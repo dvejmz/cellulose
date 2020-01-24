@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useCallback, useEffect, useReducer } from 'react';
 
 import 'spectre.css';
 import './App.scss';
@@ -63,18 +63,6 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   });
   const [ state, dispatch ]: any[] = useReducer(rootReducer, rootState);
   const { resources, funds, demand } = state;
-
-  useEffect(() => {
-    initialiseGameState();
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      sellPaper();
-    }, props.config.baseGameCycleDurationMs);
-    return () => clearTimeout(timer);
-  });
-
   const initialiseGameState = () => {
     // TODO: this is a weird hack where we
     // dispatch two fake price update events
@@ -87,17 +75,29 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     dispatch({
       type: Actions.RESOURCES_PAPER_PRICE_UPDATE,
       data: {
-        newPrice: resources.paper.price + .01,
+        newPrice: resources.paper.price + .0001,
         dispatch,
     }});
 
     dispatch({
       type: Actions.RESOURCES_PAPER_PRICE_UPDATE,
       data: {
-        newPrice: resources.paper.price - .01,
+        newPrice: resources.paper.price - .0001,
         dispatch,
     }});
   };
+  const memoizedInitialiseGameState = useCallback(initialiseGameState, []);
+
+  useEffect(() => {
+    memoizedInitialiseGameState();
+  }, [memoizedInitialiseGameState]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      sellPaper();
+    }, props.config.baseGameCycleDurationMs);
+    return () => clearTimeout(timer);
+  });
 
   const sellPaper = () => {
     if (resources.paper) {

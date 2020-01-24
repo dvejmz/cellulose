@@ -75,7 +75,7 @@ describe('App', () => {
   });
 
   it('should show current demand percentage', () => {
-    expect(getByTestId(wrapper, 'demand').text()).toContain('22.00%');
+    expect(getByTestId(wrapper, 'demand').text()).toContain('20.02%');
   });
 
   it('should show paper price', () => {
