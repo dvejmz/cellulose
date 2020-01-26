@@ -9,7 +9,7 @@ describe('<PurchasableResource />', () => {
     purchasableResource = shallow(
       <PurchasableResource 
         name="Pulp"
-        classNameId="pulp"
+        id="pulp"
         quantity={9001}
         quantityUnit="kg"
         purchaseRate={1}

@@ -1,21 +1,13 @@
 import React from 'react';
 import { Resource as ResourceType } from '../models/resource';
+import Counter, { CounterProps } from './Counter';
 
-export type ResourceProps = ResourceType & {
-  classNameId: string;
-  showDecimals?: boolean;
-}
+export type ResourceProps = CounterProps & ResourceType;
 
-const Resource: React.FC<ResourceProps> = (props: ResourceProps) => {
-  const quantity =
-    props.showDecimals
-      ? props.quantity.toFixed(2)
-      : props.quantity.toFixed(0);
-  return (
-    <div className="resource margin-top-right" data-test-id={`resource-${props.classNameId}`}>
-      <strong className={`resource__label capitalise`}>{props.name}</strong>: <span className={`resource__value`}>{quantity}</span> <span className="resource__unit">{props.quantityUnit}</span>
-    </div>
-  );
-};
+const Resource: React.FC<ResourceProps> = (props: ResourceProps) => (
+  <div className="resource">
+    <Counter {...props} />
+  </div>
+);
 
 export default Resource;

@@ -8,12 +8,14 @@ import * as Actions from './actions';
 import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 import PurchasableResource from './components/PurchasableResource';
+import Counter from './components/Counter';
 import PlayerResource from './components/Resource';
 import Upgrade from './components/Upgrade';
 import { Resource } from './models/resource';
 import demandReducer from './reducers/demand';
 import fundsReducer from './reducers/funds';
 import resourcesReducer from './reducers/resources';
+import upgradesReducer from './reducers/upgrades'
 
 // TODO: extract most of these into a Game component
 export interface RootReducerAction {
@@ -78,9 +80,10 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     funds: [ fundsReducer, initialState.funds ],
     resources: [ resourcesReducer, initialState.resources ],
     demand: [ demandReducer, initialState.demand ],
+    upgrades: [ upgradesReducer, initialState.upgrades ],
   });
   const [ state, dispatch ]: any[] = useReducer(rootReducer, rootState);
-  const { resources, funds, demand } = state;
+  const { resources, funds, demand, upgrades } = state;
   const initialiseGameState = () => {
     // TODO: this is a weird hack where we
     // dispatch two fake price update events
@@ -149,18 +152,24 @@ const App: React.FC<AppProps> = (props: AppProps) => {
   return (
     <div className="App">
       <MakePaperButton onClick={handleMakePaperButtonClick} />
+      <Counter
+        id="total-paper"
+        name="Total Paper"
+        quantity={upgrades.totalPaper}
+        quantityUnit="sheets"
+      />
+      <Funds amount={funds} currency={props.config.currency} />
       <div className="resources">
-        <Funds amount={funds} currency={props.config.currency} />
         <PlayerResource
           {...resources.paper}
           showDecimals={false}
-          classNameId="paper"
+          id="paper"
         />
         <PurchasableResource
           {...resources.pulp}
           currency={props.config.currency}
           onBuyClick={handleBuyPulpClick}
-          classNameId="pulp"
+          id="pulp"
         />
       </div>
       <div className="resource margin-top-right" data-test-id="demand">

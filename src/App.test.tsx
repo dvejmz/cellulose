@@ -62,15 +62,15 @@ describe('App', () => {
   });
 
   it('should show initial paper resource value', () => (
-    expect(findResourceValue(wrapper, 'resource-paper')).toEqual('0')
+    expect(findCounterValue(wrapper, 'counter-paper')).toEqual('0')
   ));
 
   it('should show current paper counter', () => (
-    expect(getByTestId(wrapper, 'resource-paper').exists()).toBeTruthy()
+    expect(getByTestId(wrapper, 'counter-paper').exists()).toBeTruthy()
   ));
 
   it('should show initial pulp resource value', () => (
-    expect(findResourceValue(wrapper, 'resource-purchasable-pulp')).toEqual('10')
+    expect(findCounterValue(wrapper, 'resource-purchasable-pulp')).toEqual('10')
   ));
 
   it('should show current pulp counter', () => (
@@ -100,7 +100,7 @@ describe('App', () => {
   });
 
   it('should show total paper produced', () => {
-    expect(getByTestId(wrapper, 'total-paper').text()).toEqual('0 sheets')
+    expect(getByTestId(wrapper, 'counter-total-paper').text()).toContain('0 sheets')
   });
 
   describe('when make paper button is clicked', () => {
@@ -111,11 +111,11 @@ describe('App', () => {
       });
 
       it('should increase paper resource', () => (
-        expect(findResourceValue(wrapper, 'resource-paper')).toEqual('1')
+        expect(findCounterValue(wrapper, 'counter-paper')).toEqual('1')
       ));
 
       it('should decrease pulp resource', () => {
-        expect(findResourceValue(wrapper, 'resource-purchasable-pulp')).toEqual('9')
+        expect(findCounterValue(wrapper, 'resource-purchasable-pulp')).toEqual('9')
       });
 
       describe('and there is no pulp left', () => {
@@ -129,11 +129,11 @@ describe('App', () => {
         });
 
         it('does not increase paper counter', () => (
-          expect(findResourceValue(wrapper, 'resource-paper')).toEqual('0')
+          expect(findCounterValue(wrapper, 'counter-paper')).toEqual('0')
         ));
 
         it('does not decrease pulp counter', () => (
-          expect(findResourceValue(wrapper, 'resource-purchasable-pulp')).toEqual('0')
+          expect(findCounterValue(wrapper, 'resource-purchasable-pulp')).toEqual('0')
         ));
       });
   });
@@ -214,7 +214,7 @@ describe('App', () => {
 });
 
 const expectResourceValue = (wrapper: ReactWrapper, testId: string, expectedValue: string): void => (
-  expect(findResourceValue(wrapper, testId)).toEqual(expectedValue)
+  expect(findCounterValue(wrapper, testId)).toEqual(expectedValue)
 );
 
 const expectFundsValue = (wrapper: ReactWrapper, expectedAmount: string): void => (
@@ -223,9 +223,9 @@ const expectFundsValue = (wrapper: ReactWrapper, expectedAmount: string): void =
     .toEqual(expectedAmount)
 );
 
-const findResourceValue = (wrapper: ReactWrapper, testId: string): string | number => (
+const findCounterValue = (wrapper: ReactWrapper, testId: string): string | number => (
   getByTestId(wrapper, testId)
-    .find(`.resource__value`).text()
+    .find(`.counter__value`).text()
 );
 
 const getByTestId = (wrapper: ReactWrapper, testId: string): ReactWrapper => (

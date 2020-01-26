@@ -9,7 +9,7 @@ describe('<Counter />', () => {
     counter = shallow(
       <Counter
         id="total-paper"
-        label="Total Paper"
+        name="Total Paper"
         quantityUnit="sheets"
         quantity={9001}
       />);
@@ -20,7 +20,7 @@ describe('<Counter />', () => {
   });
 
   it('shows counter name', () => {
-    expect(counter.find('.counter__label').text()).toBe('Total Paper')
+    expect(counter.find('.counter__name').text()).toBe('Total Paper')
   });
 
   it('shows counter quantity', () => {
@@ -30,7 +30,7 @@ describe('<Counter />', () => {
   it('shows counter quantity as a truncated decimal if decimal option is enabled', () => {
     counter = shallow(
       <Counter
-        label="Paper"
+        name="Paper"
         id="total-paper"
         quantityUnit="sheets"
         quantity={9001}
