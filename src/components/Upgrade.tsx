@@ -8,7 +8,11 @@ export interface UpgradeProps {
 
 const Upgrade: React.FC<UpgradeProps> = (props: UpgradeProps) => (
   <div className="upgrade" data-test-id="upgrade-ppc-2x">
-    2x PPC £100
+    <button
+      className="btn"
+    >
+      {props.name} ({props.currency}{props.cost})
+    </button>
   </div>
 );
 

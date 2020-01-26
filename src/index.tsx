@@ -30,7 +30,7 @@ const initialState: GameState = {
     totalPaper: 0,
     upgrades: [
       {
-        name: '2x PPC Boost',
+        name: '2x PPC',
         cost: 100,
         unlockTier: 1,
         enabled: false,

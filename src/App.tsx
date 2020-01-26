@@ -194,7 +194,11 @@ const App: React.FC<AppProps> = (props: AppProps) => {
         </div>
       </div>
       <div className="upgrades">
-        <Upgrade name="2x PPC Boost" cost={100} currency="£" />
+        <Upgrade
+          name={upgrades.upgrades[0].name}
+          cost={upgrades.upgrades[0].cost}
+          currency={props.config.currency}
+        />
       </div>
     </div>
   );
