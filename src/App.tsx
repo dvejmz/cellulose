@@ -151,54 +151,62 @@ const App: React.FC<AppProps> = (props: AppProps) => {
 
   return (
     <div className="App">
-      <MakePaperButton onClick={handleMakePaperButtonClick} />
-      <Counter
-        id="total-paper"
-        name="Total Paper"
-        quantity={upgrades.totalPaper}
-        quantityUnit="sheets"
-      />
-      <Funds amount={funds} currency={props.config.currency} />
-      <div className="resources">
-        <PlayerResource
-          {...resources.paper}
-          showDecimals={false}
-          id="paper"
-        />
-        <PurchasableResource
-          {...resources.pulp}
-          currency={props.config.currency}
-          onBuyClick={handleBuyPulpClick}
-          id="pulp"
-        />
-      </div>
-      <Counter
-        id="demand"
-        name="Demand"
-        quantity={demand.demandPct}
-        quantityUnit="%"
-        showDecimals
-      />
-      <div className="margin-top-right" data-test-id="resource-paper-price">
-        <Counter
-          id="paper-price"
-          name="Paper Sale Price"
-          quantity={resources.paper.price}
-          quantityUnit={props.config.currency}
-          quantityUnitAlignment={QuantityUnitAlignment.Left}
-          showDecimals
-        />
-        <div className="resources__paper-price-adjusters" data-test-id="paper-price-adjusters">
-          <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-inc-button" onClick={handleIncPaperPriceClick}>+</button>
-          <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-dec-button" onClick={handleDecPaperPriceClick}>-</button>
+      <div className="container">
+        <div className="columns">
+          <div className="column col-2">
+            <MakePaperButton onClick={handleMakePaperButtonClick} />
+            <div className="upgrades">
+              <Upgrade
+                name={upgrades.upgrades[0].name}
+                cost={upgrades.upgrades[0].cost}
+                currency={props.config.currency}
+              />
+            </div>
+          </div>
+          <div className="column col-2">
+            <Counter
+              id="total-paper"
+              name="Total Paper"
+              quantity={upgrades.totalPaper}
+              quantityUnit="sheets"
+            />
+            <Funds amount={funds} currency={props.config.currency} />
+            <div className="resources">
+              <PlayerResource
+                {...resources.paper}
+                showDecimals={false}
+                id="paper"
+              />
+              <PurchasableResource
+                {...resources.pulp}
+                currency={props.config.currency}
+                onBuyClick={handleBuyPulpClick}
+                id="pulp"
+              />
+            </div>
+            <Counter
+              id="demand"
+              name="Demand"
+              quantity={demand.demandPct}
+              quantityUnit="%"
+              showDecimals
+            />
+            <div className="margin-top-right" data-test-id="resource-paper-price">
+              <Counter
+                id="paper-price"
+                name="Paper Sale Price"
+                quantity={resources.paper.price}
+                quantityUnit={props.config.currency}
+                quantityUnitAlignment={QuantityUnitAlignment.Left}
+                showDecimals
+              />
+              <div className="resources__paper-price-adjusters" data-test-id="paper-price-adjusters">
+                <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-inc-button" onClick={handleIncPaperPriceClick}>+</button>
+                <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-dec-button" onClick={handleDecPaperPriceClick}>-</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="upgrades">
-        <Upgrade
-          name={upgrades.upgrades[0].name}
-          cost={upgrades.upgrades[0].cost}
-          currency={props.config.currency}
-        />
       </div>
     </div>
   );
