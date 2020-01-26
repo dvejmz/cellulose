@@ -37,14 +37,17 @@ describe('App', () => {
           purchaseRate: 1,
         },
       },
-      upgrades: [
-        {
-          name: '2x PPC',
-          cost: 100,
-          unlockTier: 1,
-          enabled: false,
-        },
-      ],
+      upgrades: {
+        totalPaper: 0,
+        upgrades: [
+          {
+            name: '2x PPC',
+            cost: 100,
+            unlockTier: 1,
+            enabled: false,
+          },
+        ],
+      }
     };
 
     wrapper = mount(createApp(initialState, appConfig));
@@ -94,6 +97,10 @@ describe('App', () => {
     const adjusters = getByTestId(wrapper, 'paper-price-adjusters');
     expect(adjusters.text()).toContain('+');
     expect(adjusters.text()).toContain('-');
+  });
+
+  it('should show total paper produced', () => {
+    expect(getByTestId(wrapper, 'total-paper').text()).toEqual('0 sheets')
   });
 
   describe('when make paper button is clicked', () => {
