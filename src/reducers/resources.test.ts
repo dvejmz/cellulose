@@ -7,6 +7,22 @@ describe('ResourcesReducer', () => {
   let initialState: Resources;
   let reducedState: Resources;
 
+  describe(Actions.RESOURCES_MAKE_PAPER, () => {
+    beforeEach(() => {
+      initialState = getMockResources();
+      reducedState = resourcesReducer(
+        initialState,
+        {
+          type: Actions.RESOURCES_MAKE_PAPER,
+        },
+      );
+    });
+
+    it('should increase paper resource quantity by increase amount', () => {
+      expect(reducedState.paper.quantity).toBe(1);
+    });
+  });
+
   describe(Actions.RESOURCES_SELL_PAPER, () => {
     beforeEach(() => {
       initialState = getMockResources({ paper: { quantity: 10, purchaseRate: 3 }});

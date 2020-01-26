@@ -37,6 +37,14 @@ describe('App', () => {
           purchaseRate: 1,
         },
       },
+      upgrades: [
+        {
+          name: '2x PPC',
+          cost: 100,
+          unlockTier: 1,
+          enabled: false,
+        },
+      ],
     };
 
     wrapper = mount(createApp(initialState, appConfig));
@@ -183,6 +191,17 @@ describe('App', () => {
 
     it('demand percentage increases', () => {
       expect(getByTestId(wrapper, 'demand').text()).toContain('30.00%');
+    });
+  });
+
+  describe('when total paper produced reaches milestone', () => {
+    let upgradeButton: any;
+    beforeAll(() => {
+      upgradeButton = getByTestId(wrapper, 'upgrade-ppc-2x');
+    });
+
+    it('shows paper per click boost upgrade', () => {
+      expect(upgradeButton).toHaveLength(1);
     });
   });
 });

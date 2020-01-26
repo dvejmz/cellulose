@@ -9,11 +9,13 @@ import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 import PurchasableResource from './components/PurchasableResource';
 import PlayerResource from './components/Resource';
+import Upgrade from './components/Upgrade';
 import { Resource } from './models/resource';
 import demandReducer from './reducers/demand';
 import fundsReducer from './reducers/funds';
 import resourcesReducer from './reducers/resources';
 
+// TODO: extract most of these into a Game component
 export interface RootReducerAction {
   type: string;
   data?: any;
@@ -29,10 +31,26 @@ export interface Demand {
   price: number;
 }
 
+// TODO: Create UpgradeManager or UpgradeCollection
+// To easily query and manage upgrades in the state
+export interface Upgrade {
+  name: string;
+  cost: number;
+  unlockTier: number;
+  enabled: boolean;
+};
+
+export interface Upgrades {
+  totalPaper: number;
+  // TODO: currentTier?
+  upgrades: Upgrade[];
+};
+
 export interface GameState {
   funds: number;
   resources: Resources;
   demand: Demand;
+  upgrades: Upgrades;
 }
 
 export interface AppConfig {
@@ -154,6 +172,9 @@ const App: React.FC<AppProps> = (props: AppProps) => {
           <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-inc-button" onClick={handleIncPaperPriceClick}>+</button>
           <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-dec-button" onClick={handleDecPaperPriceClick}>-</button>
         </div>
+      </div>
+      <div className="upgrades">
+        <Upgrade name="2x PPC Boost" cost={100} currency="£" />
       </div>
     </div>
   );

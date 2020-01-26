@@ -26,6 +26,17 @@ const initialState: GameState = {
       purchaseRate: 1000,
     },
   },
+  upgrades: {
+    totalPaper: 0,
+    upgrades: [
+      {
+        name: '2x PPC Boost',
+        cost: 100,
+        unlockTier: 1,
+        enabled: false,
+      },
+    ],
+  },
 };
 ReactDOM.render(createApp(initialState), document.getElementById('root'));
 
