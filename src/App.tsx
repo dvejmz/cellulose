@@ -8,7 +8,7 @@ import * as Actions from './actions';
 import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 import PurchasableResource from './components/PurchasableResource';
-import Counter from './components/Counter';
+import Counter, { QuantityUnitAlignment } from './components/Counter';
 import PlayerResource from './components/Resource';
 import Upgrade from './components/Upgrade';
 import { Resource } from './models/resource';
@@ -172,11 +172,22 @@ const App: React.FC<AppProps> = (props: AppProps) => {
           id="pulp"
         />
       </div>
-      <div className="resource margin-top-right" data-test-id="demand">
-        <strong>Demand:</strong> {demand.demandPct.toFixed(2)}%
-      </div>
+      <Counter
+        id="demand"
+        name="Demand"
+        quantity={demand.demandPct}
+        quantityUnit="%"
+        showDecimals
+      />
       <div className="margin-top-right" data-test-id="resource-paper-price">
-        <strong>Paper Sale Price:</strong> {props.config.currency}{resources.paper.price.toFixed(2)} 
+        <Counter
+          id="paper-price"
+          name="Paper Sale Price"
+          quantity={resources.paper.price}
+          quantityUnit={props.config.currency}
+          quantityUnitAlignment={QuantityUnitAlignment.Left}
+          showDecimals
+        />
         <div className="resources__paper-price-adjusters" data-test-id="paper-price-adjusters">
           <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-inc-button" onClick={handleIncPaperPriceClick}>+</button>
           <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-dec-button" onClick={handleDecPaperPriceClick}>-</button>

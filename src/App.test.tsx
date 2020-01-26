@@ -82,15 +82,15 @@ describe('App', () => {
   ));
 
   it('should show current demand', () => {
-    expect(getByTestId(wrapper, 'demand').exists()).toBeTruthy();
+    expect(getByTestId(wrapper, 'counter-demand').exists()).toBeTruthy();
   });
 
   it('should show current demand percentage', () => {
-    expect(getByTestId(wrapper, 'demand').text()).toContain('20.02%');
+    expect(getByTestId(wrapper, 'counter-demand').text()).toContain('20.02 %');
   });
 
   it('should show paper price', () => {
-    expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.20');
+    expect(getByTestId(wrapper, 'counter-paper-price').text()).toContain('£0.20');
   });
 
   it('should show price adjustment buttons', () => {
@@ -177,11 +177,11 @@ describe('App', () => {
     });
 
     it('paper price should increase by set amount', () => {
-      expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.25');
+      expect(getByTestId(wrapper, 'counter-paper-price').text()).toContain('£0.25');
     });
 
     it('demand percentage decreases', () => {
-      expect(getByTestId(wrapper, 'demand').text()).toContain('10.00%');
+      expect(getByTestId(wrapper, 'counter-demand').text()).toContain('10.00 %');
     });
   });
 
@@ -193,11 +193,11 @@ describe('App', () => {
     });
 
     it('paper price should decrease by set amount', () => {
-      expect(getByTestId(wrapper, 'resource-paper-price').text()).toContain('£0.15');
+      expect(getByTestId(wrapper, 'counter-paper-price').text()).toContain('£0.15');
     });
 
     it('demand percentage increases', () => {
-      expect(getByTestId(wrapper, 'demand').text()).toContain('30.00%');
+      expect(getByTestId(wrapper, 'counter-demand').text()).toContain('30.00 %');
     });
   });
 

@@ -1,6 +1,6 @@
 import { shallow, ShallowWrapper } from 'enzyme';
 import React from 'react';
-import Counter from './Counter';
+import Counter, { QuantityUnitAlignment } from './Counter';
 
 describe('<Counter />', () => {
   let counter: ShallowWrapper;
@@ -15,16 +15,12 @@ describe('<Counter />', () => {
       />);
   });
 
-  it('renders ok', () => {
+  it('renders', () => {
     expect(counter.exists()).toBeTruthy();
   });
 
-  it('shows counter name', () => {
-    expect(counter.find('.counter__name').text()).toBe('Total Paper')
-  });
-
-  it('shows counter quantity', () => {
-    expect(counter.find('.counter__value').text()).toBe('9001');
+  it('shows counter correctly', () => {
+    expect(counter.text()).toBe('Total Paper: 9001 sheets')
   });
 
   it('shows counter quantity as a truncated decimal if decimal option is enabled', () => {
@@ -37,6 +33,19 @@ describe('<Counter />', () => {
         showDecimals
       />);
     expect(counter.find('.counter__value').text()).toBe('9001.00');
+  });
+
+  it('shows counter unit to the left of the amount if it is so specified', () => {
+    counter = shallow(
+      <Counter
+        name="Price"
+        id="price"
+        quantityUnit="£"
+        quantity={9001}
+        showDecimals
+        quantityUnitAlignment={QuantityUnitAlignment.Left}
+      />);
+      expect(counter.text()).toContain('Price: £9001.00');
   });
 
   it('shows counter unit', () => {
