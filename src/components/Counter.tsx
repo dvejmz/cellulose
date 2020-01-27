@@ -26,7 +26,7 @@ const Counter: React.FC<CounterProps> = (props: CounterProps) => {
       <strong className={`counter__name capitalise`}>{props.name}</strong>:{' '}
       {props.quantityUnitAlignment === QuantityUnitAlignment.Left && <span className="counter__unit">{props.quantityUnit}</span>}
       <span className={`counter__value`}>{formatQuantity(props.quantity, props.showDecimals)}</span>{' '} 
-      {props.quantityUnitAlignment === QuantityUnitAlignment.Right || props.quantityUnitAlignment === undefined && <span className="counter__unit">{props.quantityUnit}</span>}
+      {(props.quantityUnitAlignment === QuantityUnitAlignment.Right || props.quantityUnitAlignment === undefined) && <span className="counter__unit">{props.quantityUnit}</span>}
     </div>
   );
 };
