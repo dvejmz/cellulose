@@ -5,10 +5,10 @@ import './App.scss';
 
 import combineReducers from 'react-combine-reducers';
 import * as Actions from './actions';
+import Counter, { QuantityUnitAlignment } from './components/Counter';
 import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 import PurchasableResource from './components/PurchasableResource';
-import Counter, { QuantityUnitAlignment } from './components/Counter';
 import PlayerResource from './components/Resource';
 import Upgrade from './components/Upgrade';
 import { getUnlockableUpgrades } from './game/upgrades';
@@ -123,8 +123,8 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     return () => clearTimeout(timer);
   });
 
-  //useEffect(() => {
-  //}, [upgrades.upgrades]);
+  // useEffect(() => {
+  // }, [upgrades.upgrades]);
 
   const sellPaper = () => {
     if (resources.paper) {

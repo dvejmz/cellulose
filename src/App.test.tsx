@@ -2,9 +2,9 @@ import { mount, ReactWrapper } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import createApp, { AppConfig, GameState } from './App';
 import Funds from './components/Funds';
-import * as Upgrades from './game/upgrades';
-import Upgrade from './components/Upgrade';
 import MakePaperButton from './components/MakePaperButton';
+import Upgrade from './components/Upgrade';
+import * as Upgrades from './game/upgrades';
 
 describe('App', () => {
   let wrapper: ReactWrapper;
@@ -266,17 +266,17 @@ describe('App', () => {
         // Might need storing unlockableUpgrades
         // as another full-fledged piece of data
         // But it's duplicate data???
-        //it('removes upgrade button', () => {
+        // it('removes upgrade button', () => {
         //  expect(upgradeButton).toHaveLength(0);
-        //});
+        // });
 
-        //describe('and make paper button is clicked', () => {
+        // describe('and make paper button is clicked', () => {
         //  it('increases unsold paper counter by twice the amount', () => {
         //  });
 
         //  it('increases total paper counter by twice the amount', () => {
         //  });
-        //});
+        // });
       });
     });
   });

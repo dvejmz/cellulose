@@ -7,9 +7,11 @@ describe('<Upgrade />', () => {
 
   beforeEach(() => {
     const props: UpgradeProps = {
+      id: 'upgrade-ppc-2x',
       name: '2x PPC',
       cost: 100,
       currency: '£',
+      onBuyClick: () => {}, // tslint:disable-line no-empty
     };
     upgrade = shallow(<Upgrade {...props} />);
   });

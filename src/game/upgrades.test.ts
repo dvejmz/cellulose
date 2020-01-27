@@ -1,6 +1,6 @@
-import { getUnlockableUpgrades, getUpgradeById } from './upgrades';
-import { getMockUpgrade } from '../utils/test/mocks';
 import { Upgrade } from '../App';
+import { getMockUpgrade } from '../utils/test/mocks';
+import { getUnlockableUpgrades, getUpgradeById } from './upgrades';
 
 describe('Upgrades', () => {
   let upgrades: Upgrade[];
