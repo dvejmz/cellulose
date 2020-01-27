@@ -1,4 +1,5 @@
 import * as Actions from '../actions';
+import { getUpgradeById } from '../game/upgrades';
 import { RootReducerAction, Upgrades } from '../App';
 
 const upgradesReducer = (currentUpgrades: Upgrades, action: RootReducerAction): Upgrades => {
@@ -7,6 +8,17 @@ const upgradesReducer = (currentUpgrades: Upgrades, action: RootReducerAction): 
       return {
         ...currentUpgrades,
         totalPaper: currentUpgrades.totalPaper + 1,
+      };
+    case Actions.UPGRADES_BUY:
+      const updatedUpgrades = [...currentUpgrades.upgrades];
+      const upgradeIndex = updatedUpgrades.findIndex(u => u.id === action.data.id);
+      if (upgradeIndex !== -1) {
+        updatedUpgrades[upgradeIndex].enabled = true;
+      }
+
+      return {
+        ...currentUpgrades,
+        upgrades: updatedUpgrades,
       };
     default:
       return currentUpgrades;

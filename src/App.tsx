@@ -11,6 +11,7 @@ import PurchasableResource from './components/PurchasableResource';
 import Counter, { QuantityUnitAlignment } from './components/Counter';
 import PlayerResource from './components/Resource';
 import Upgrade from './components/Upgrade';
+import { getUnlockableUpgrades } from './game/upgrades';
 import { Resource } from './models/resource';
 import demandReducer from './reducers/demand';
 import fundsReducer from './reducers/funds';
@@ -36,9 +37,10 @@ export interface Demand {
 // TODO: Create UpgradeManager or UpgradeCollection
 // To easily query and manage upgrades in the state
 export interface Upgrade {
+  id: string;
   name: string;
   cost: number;
-  unlockTier: number;
+  unlockCost: number;
   enabled: boolean;
 };
 
@@ -72,6 +74,7 @@ const {
   RESOURCES_MAKE_PAPER,
   RESOURCES_PAPER_PRICE_INCREASE,
   RESOURCES_PAPER_PRICE_DECREASE,
+  UPGRADES_BUY,
 } = Actions;
 
 const App: React.FC<AppProps> = (props: AppProps) => {
@@ -120,6 +123,9 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     return () => clearTimeout(timer);
   });
 
+  //useEffect(() => {
+  //}, [upgrades.upgrades]);
+
   const sellPaper = () => {
     if (resources.paper) {
       dispatch({
@@ -149,6 +155,30 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     dispatch({ type: RESOURCES_PAPER_PRICE_DECREASE, data: { dispatch, step: props.config.paperPriceChangeStep } });
   };
 
+  const handleBuyUpgradeClick = (id: string, cost: number) => {
+    dispatch({ type: UPGRADES_BUY, data: { id, cost }})
+  };
+
+  const getUpgrades = () => (
+    getUnlockableUpgrades(upgrades.totalPaper, upgrades.upgrades)
+  );
+
+  // TODO: could refactor into its own component
+  // able to manage its own state
+  const unlockableUpgrades = (
+    getUpgrades()
+      .map(u => (
+        <Upgrade
+          id={u.id}
+          key={u.id}
+          name={u.name}
+          cost={u.cost}
+          currency={props.config.currency}
+          onBuyClick={handleBuyUpgradeClick}
+        />
+      ))
+  );
+
   return (
     <div className="App">
       <div className="container">
@@ -156,11 +186,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
           <div className="column col-2">
             <MakePaperButton onClick={handleMakePaperButtonClick} />
             <div className="upgrades">
-              <Upgrade
-                name={upgrades.upgrades[0].name}
-                cost={upgrades.upgrades[0].cost}
-                currency={props.config.currency}
-              />
+              {unlockableUpgrades}
             </div>
           </div>
           <div className="column col-2">
@@ -191,7 +217,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
               quantityUnit="%"
               showDecimals
             />
-            <div className="margin-top-right" data-test-id="resource-paper-price">
+            <div className="paper-price">
               <Counter
                 id="paper-price"
                 name="Paper Sale Price"

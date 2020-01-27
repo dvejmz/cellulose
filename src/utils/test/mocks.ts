@@ -1,4 +1,4 @@
-import { Demand, GameState, Resources, Upgrades } from '../../App';
+import { Demand, GameState, Resources, Upgrade, Upgrades } from '../../App';
 import { Resource } from '../../models/resource';
 
 export const getMockGameState = (overrides: any = {}): GameState => ({
@@ -38,14 +38,20 @@ export const getMockPulpResource = (overrides: any = {}): Resource => ({
   ...overrides,
 });
 
+export const getMockUpgrade = (overrides: any = {}): Upgrade => ({
+  id: 'upgrade-ppc-2x',
+  name: '2x PPC',
+  cost: 100,
+  unlockCost: 10,
+  enabled: false,
+  ...overrides,
+});
+
 export const getMockUpgrades = (overrides: any = {}): Upgrades => ({
   totalPaper: 0,
   upgrades: [
-    {
-      name: '2x PPC',
-      cost: 100,
-      unlockTier: 1,
-      enabled: false,
-    },
+    getMockUpgrade({ id: 'upgrade-ppc-2x' }),
+    getMockUpgrade({ id: 'upgrade-ppc-4x' }),
+    getMockUpgrade({ id: 'upgrade-ppc-8x' }),
   ]
 });

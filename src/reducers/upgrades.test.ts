@@ -8,7 +8,7 @@ describe('UpgradesReducer', () => {
   let reducedState: Upgrades;
 
   describe(Actions.RESOURCES_MAKE_PAPER, () => {
-    beforeEach(() => {
+    beforeAll(() => {
       initialState = getMockUpgrades();
       reducedState = upgradesReducer(
         initialState,
@@ -18,6 +18,19 @@ describe('UpgradesReducer', () => {
 
     it('should increase total paper produced by paper increase amount', () => {
       expect(reducedState.totalPaper).toBe(1);
+    });
+  });
+
+  describe(Actions.UPGRADES_BUY, () => {
+    beforeEach(() => {
+      reducedState = upgradesReducer(
+        initialState,
+        { type: Actions.UPGRADES_BUY, data: { id: 'upgrade-ppc-2x' }}
+      );
+    });
+
+    it('should enable bought upgrade', () => {
+      expect(reducedState.upgrades[0].enabled).toBeTruthy();
     });
   });
 });

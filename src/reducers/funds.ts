@@ -13,6 +13,11 @@ const fundsReducer = (currentFunds: number, action: RootReducerAction): number =
       return action.data.paper.quantity
         ? currentFunds + (action.data.paper.price * purchaseRate)
         : currentFunds;
+    case Actions.UPGRADES_BUY:
+      const upgradePrice = action.data.cost;
+      return currentFunds >= upgradePrice
+        ? currentFunds - upgradePrice
+        : currentFunds;
     default:
       return currentFunds;
   }

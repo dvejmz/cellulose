@@ -63,4 +63,30 @@ describe('ResourcesReducer', () => {
       ));
     });
   });
+
+  describe(Actions.UPGRADES_BUY, () => {
+    it('should subtract upgrade cost from funds if there are enough funds', () => {
+      initialState = getMockGameState();
+      reducedState = fundsReducer(
+        initialState.funds,
+        {
+          type: Actions.UPGRADES_BUY,
+          data: { id: 'upgrade-ppc-2x', cost: 100 },
+        },
+      );
+      expect(reducedState).toBe(0);
+    });
+
+    it('should not subtract anything from funds if there are not enough funds', () => {
+      initialState = getMockGameState({ funds: 20 });
+      reducedState = fundsReducer(
+        initialState.funds,
+        {
+          type: Actions.UPGRADES_BUY,
+          data: { id: 'upgrade-ppc-2x', cost: 100 },
+        },
+      );
+      expect(reducedState).toBe(20);
+    });
+  });
 });

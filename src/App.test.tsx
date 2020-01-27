@@ -2,6 +2,8 @@ import { mount, ReactWrapper } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import createApp, { AppConfig, GameState } from './App';
 import Funds from './components/Funds';
+import * as Upgrades from './game/upgrades';
+import Upgrade from './components/Upgrade';
 import MakePaperButton from './components/MakePaperButton';
 
 describe('App', () => {
@@ -41,9 +43,10 @@ describe('App', () => {
         totalPaper: 0,
         upgrades: [
           {
+            id: 'upgrade-ppc-2x',
             name: '2x PPC',
             cost: 100,
-            unlockTier: 1,
+            unlockCost: 10,
             enabled: false,
           },
         ],
@@ -101,6 +104,10 @@ describe('App', () => {
 
   it('should show total paper produced', () => {
     expect(getByTestId(wrapper, 'counter-total-paper').text()).toContain('0 sheets')
+  });
+
+  it('should not show any upgrades', () => {
+    expect(wrapper.find(Upgrade)).toHaveLength(0);
   });
 
   describe('when make paper button is clicked', () => {
@@ -203,12 +210,74 @@ describe('App', () => {
 
   describe('when total paper produced reaches milestone', () => {
     let upgradeButton: any;
-    beforeAll(() => {
+
+    beforeEach(() => {
+      const state = { ...initialState };
+      state.upgrades.totalPaper = Upgrades.UPGRADE_UNLOCK_TIER_1;
+      wrapper = mount(createApp(state));
       upgradeButton = getByTestId(wrapper, 'upgrade-ppc-2x');
     });
 
-    it('shows paper per click boost upgrade', () => {
+    it('shows upgrade', () => {
       expect(upgradeButton).toHaveLength(1);
+    });
+
+    describe('and there are not enough funds to buy upgrade', () => {
+      let state: GameState;
+
+      beforeEach(() => {
+        state = { ...initialState };
+        state.upgrades.totalPaper = Upgrades.UPGRADE_UNLOCK_TIER_1;
+        state.funds = 0;
+        wrapper = mount(createApp(state));
+        upgradeButton = getByTestId(wrapper, 'upgrade-ppc-2x');
+      });
+
+      describe('and upgrade is clicked', () => {
+        beforeEach(() => {
+          act(() => {
+            upgradeButton
+              .find('button')
+              .simulate('click');
+          });
+        });
+
+        it('should still show upgrade', () => {
+          expect(upgradeButton).toHaveLength(1);
+        });
+      });
+    });
+
+    describe('and there are enough funds to buy upgrade', () => {
+      describe('and upgrade is clicked', () => {
+        beforeEach(() => {
+          act(() => {
+            upgradeButton
+              .find('button')
+              .simulate('click');
+          });
+        });
+
+        it('subtracts upgrade cost from funds', () => {
+          expectFundsValue(wrapper, "0.00");
+        });
+
+        // TODO: this test won't pass
+        // Might need storing unlockableUpgrades
+        // as another full-fledged piece of data
+        // But it's duplicate data???
+        //it('removes upgrade button', () => {
+        //  expect(upgradeButton).toHaveLength(0);
+        //});
+
+        //describe('and make paper button is clicked', () => {
+        //  it('increases unsold paper counter by twice the amount', () => {
+        //  });
+
+        //  it('increases total paper counter by twice the amount', () => {
+        //  });
+        //});
+      });
     });
   });
 });

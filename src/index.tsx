@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 
 const initialPaperPrice = 0.1;
 const initialState: GameState = {
-  funds: 0,
+  funds: 100000,
   demand: {
     demandPct: 0,
     price: initialPaperPrice,
@@ -30,9 +30,10 @@ const initialState: GameState = {
     totalPaper: 0,
     upgrades: [
       {
+        id: 'upgrade-ppc-2x',
         name: '2x PPC',
-        cost: 100,
-        unlockTier: 1,
+        cost: 5,
+        unlockCost: 0,
         enabled: false,
       },
     ],
