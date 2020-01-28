@@ -16,7 +16,7 @@ describe('<Counter />', () => {
   });
 
   it('renders', () => {
-    expect(counter.exists()).toBeTruthy();
+    expect(counter).toMatchSnapshot();
   });
 
   it('shows counter correctly', () => {

@@ -9,7 +9,7 @@ describe('<MakePaperButton />', () => {
     makePaperButton = shallow(<MakePaperButton onClick={() => {}} />); // tslint:disable-line no-empty
   });
 
-  it('renders ok', () => {
-    expect(makePaperButton.text()).toBe('Make Paper');
+  it('renders', () => {
+    expect(makePaperButton).toMatchSnapshot();
   });
 });

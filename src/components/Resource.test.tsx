@@ -18,6 +18,6 @@ describe('<Resource />', () => {
   });
 
   it('renders ok', () => {
-    expect(resource.exists()).toBeTruthy();
+    expect(resource).toMatchSnapshot();
   });
 });

@@ -20,7 +20,7 @@ describe('<PurchasableResource />', () => {
   });
 
   it('renders ok', () => (
-    expect(purchasableResource.exists()).toBeTruthy()
+    expect(purchasableResource).toMatchSnapshot()
   ));
 
   it('shows buy text', () => (

@@ -9,6 +9,10 @@ describe('<Funds />', () => {
     funds = shallow(<Funds amount={100} currency={'£'} />);
   });
 
+  it('renders', () => {
+    expect(funds).toMatchSnapshot();
+  });
+
   it('shows amount', () => (
     expect(funds.find('.funds__amount').text()).toEqual('100.00')
   ));

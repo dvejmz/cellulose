@@ -123,9 +123,6 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     return () => clearTimeout(timer);
   });
 
-  // useEffect(() => {
-  // }, [upgrades.upgrades]);
-
   const sellPaper = () => {
     if (resources.paper) {
       dispatch({

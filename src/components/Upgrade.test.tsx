@@ -16,8 +16,8 @@ describe('<Upgrade />', () => {
     upgrade = shallow(<Upgrade {...props} />);
   });
 
-  it('should render', () => {
-    expect(upgrade.exists()).toBeTruthy();
+  it('renders', () => {
+    expect(upgrade).toMatchSnapshot();
   });
 
   it('shows paper per click boost upgrade name and cost', () => {
