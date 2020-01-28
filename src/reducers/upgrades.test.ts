@@ -1,5 +1,5 @@
 import * as Actions from '../actions';
-import { Upgrades } from '../App';
+import { Upgrades } from '../game/upgrades';
 import upgradesReducer from '../reducers/upgrades';
 import { getMockUpgrades } from '../utils/test/mocks';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Resource as ResourceType } from '../models/resource';
+import { Resource as ResourceType } from '../game/resources';
 import Counter, { CounterProps } from './Counter';
 
 export type ResourceProps = CounterProps & ResourceType;

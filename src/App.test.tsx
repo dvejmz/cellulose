@@ -1,9 +1,10 @@
 import { mount, ReactWrapper } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import createApp, { AppConfig, GameState } from './App';
+import createApp, { AppConfig } from './App';
 import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 import Upgrade from './components/Upgrade';
+import { GameState } from './Game';
 import * as Upgrades from './game/upgrades';
 
 describe('App', () => {

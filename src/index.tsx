@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
-import createApp, { GameState } from './App';
+import createApp from './App';
+import { GameState } from './Game';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 

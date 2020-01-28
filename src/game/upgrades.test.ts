@@ -1,5 +1,5 @@
-import { Upgrade } from '../App';
 import { getMockUpgrade } from '../utils/test/mocks';
+import { Upgrade } from './upgrades';
 import { getUnlockableUpgrades, getUpgradeById } from './upgrades';
 
 describe('Upgrades', () => {

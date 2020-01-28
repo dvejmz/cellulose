@@ -1,5 +1,5 @@
 import * as Actions from '../actions';
-import { GameState } from '../App';
+import { GameState } from '../Game';
 import fundsReducer from '../reducers/funds';
 import { getMockGameState, getMockPaperResource } from '../utils/test/mocks';
 

@@ -1,3 +1,8 @@
+export interface Demand {
+  demandPct: number;
+  price: number;
+}
+
 export const getDemand = (
   highDemandPrice: number,
   highDemandQty: number,

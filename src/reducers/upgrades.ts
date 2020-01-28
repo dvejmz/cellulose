@@ -1,5 +1,6 @@
 import * as Actions from '../actions';
-import { RootReducerAction, Upgrades } from '../App';
+import { Upgrades } from '../game/upgrades';
+import { RootReducerAction } from '../reducers';
 
 const upgradesReducer = (currentUpgrades: Upgrades, action: RootReducerAction): Upgrades => {
   switch (action.type) {

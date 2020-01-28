@@ -1,5 +1,5 @@
 import * as Actions from '../actions';
-import { Resources } from '../App';
+import { Resources } from '../game/resources';
 import resourcesReducer from '../reducers/resources';
 import { getMockResources } from '../utils/test/mocks';
 

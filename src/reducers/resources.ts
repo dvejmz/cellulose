@@ -1,6 +1,7 @@
 import * as Actions from '../actions';
-import { Resources, RootReducerAction } from '../App';
 import { getPurchaseRateFromDemand } from '../game/demand';
+import { Resources } from '../game/resources';
+import { RootReducerAction } from './../reducers';
 
 const getUpdatedPaperCounter = (resources: Resources): number => (
   resources.pulp.quantity 

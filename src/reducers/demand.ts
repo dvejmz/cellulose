@@ -1,6 +1,6 @@
 import * as Actions from '../actions';
-import { Demand, RootReducerAction } from '../App';
-import { getDemand } from '../game/demand';
+import { Demand, getDemand } from '../game/demand';
+import { RootReducerAction } from '../reducers';
 
 const demandReducer = (currentDemand: Demand, action: RootReducerAction): Demand => {
   switch(action.type) {

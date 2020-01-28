@@ -1,5 +1,7 @@
-import { Demand, GameState, Resources, Upgrade, Upgrades } from '../../App';
-import { Resource } from '../../models/resource';
+import { GameState } from '../../Game';
+import { Demand } from '../../game/demand';
+import { Resource, Resources } from '../../game/resources';
+import { Upgrade, Upgrades } from '../../game/upgrades';
 
 export const getMockGameState = (overrides: any = {}): GameState => ({
   demand: getMockDemand(overrides.demand),
