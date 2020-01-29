@@ -6,11 +6,10 @@ import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 import PurchasableResource from './components/PurchasableResource';
 import PlayerResource from './components/Resource';
-import Upgrade from './components/Upgrade';
+import Upgrades from './containers/Upgrades';
 import { Demand } from './game/demand';
 import { Resources } from './game/resources';
-import { getUnlockableUpgrades } from './game/upgrades';
-import { Upgrades } from './game/upgrades';
+import { Upgrades as UpgradesType } from './game/upgrades';
 
 export interface RootReducerAction {
   type: string;
@@ -21,7 +20,7 @@ export interface GameState {
   funds: number;
   resources: Resources;
   demand: Demand;
-  upgrades: Upgrades;
+  upgrades: UpgradesType;
 }
 
 export interface GameConfig {
@@ -47,6 +46,7 @@ const {
 
 const Game: React.FC<GameProps> = (props: GameProps) => {
   const { resources, funds, demand, upgrades } = props.gameState;
+  const { config } = props;
   const dispatch = props.dispatch;
 
   const initialiseGameState = () => {
@@ -115,37 +115,22 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
   };
 
   const handleBuyUpgradeClick = (id: string, cost: number) => {
-    dispatch({ type: UPGRADES_BUY, data: { id, cost }})
+    if (funds >= cost) {
+      dispatch({ type: UPGRADES_BUY, data: { id, cost }})
+    }
   };
-
-  const getUpgrades = () => (
-    getUnlockableUpgrades(upgrades.totalPaper, upgrades.upgrades)
-  );
-
-  // TODO: could refactor into its own component
-  // able to manage its own state
-  const unlockableUpgrades = (
-    getUpgrades()
-      .map(u => (
-        <Upgrade
-          id={u.id}
-          key={u.id}
-          name={u.name}
-          cost={u.cost}
-          currency={props.config.currency}
-          onBuyClick={handleBuyUpgradeClick}
-        />
-      ))
-  );
 
   return (
     <div className="container">
       <div className="columns">
         <div className="column col-2">
           <MakePaperButton onClick={handleMakePaperButtonClick} />
-          <div className="upgrades">
-            {unlockableUpgrades}
-          </div>
+          <Upgrades
+            upgrades={upgrades.upgrades}
+            totalPaper={upgrades.totalPaper}
+            currency={config.currency}
+            onBuyClick={handleBuyUpgradeClick}
+          />
         </div>
         <div className="column col-2">
           <Counter
@@ -154,7 +139,7 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
             quantity={upgrades.totalPaper}
             quantityUnit="sheets"
           />
-          <Funds amount={funds} currency={props.config.currency} />
+          <Funds amount={funds} currency={config.currency} />
           <div className="resources">
             <PlayerResource
               {...resources.paper}
@@ -163,7 +148,7 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
             />
             <PurchasableResource
               {...resources.pulp}
-              currency={props.config.currency}
+              currency={config.currency}
               onBuyClick={handleBuyPulpClick}
               id="pulp"
             />

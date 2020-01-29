@@ -55,5 +55,6 @@ export const getMockUpgrades = (overrides: any = {}): Upgrades => ({
     getMockUpgrade({ id: 'upgrade-ppc-2x' }),
     getMockUpgrade({ id: 'upgrade-ppc-4x' }),
     getMockUpgrade({ id: 'upgrade-ppc-8x' }),
-  ]
+  ],
+  ...overrides,
 });

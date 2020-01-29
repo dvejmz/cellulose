@@ -34,7 +34,7 @@ const initialState: GameState = {
         id: 'upgrade-ppc-2x',
         name: '2x PPC',
         cost: 10,
-        unlockCost: 100,
+        unlockCost: 10,
         enabled: false,
       },
     ],
