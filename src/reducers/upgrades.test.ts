@@ -12,7 +12,7 @@ describe('UpgradesReducer', () => {
       initialState = getMockUpgrades();
       reducedState = upgradesReducer(
         initialState,
-        { type: Actions.RESOURCES_MAKE_PAPER }
+        { type: Actions.RESOURCES_MAKE_PAPER, data: { multiplier: 1 } }
       );
     });
 

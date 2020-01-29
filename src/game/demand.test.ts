@@ -1,3 +1,4 @@
+import { getMockUpgrade } from '../utils/test/mocks';
 import { getDemand, getPurchaseRateFromDemand } from './demand';
 
 describe('getDemand', () => {

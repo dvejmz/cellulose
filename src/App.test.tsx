@@ -209,7 +209,7 @@ describe('App', () => {
     });
   });
 
-  describe('when total paper produced reaches milestone', () => {
+  describe('when total paper produced reaches 2x paper-per-click upgrade unlock cost', () => {
     let upgradeButton: any;
 
     beforeEach(() => {
@@ -272,13 +272,23 @@ describe('App', () => {
         // expect(upgradeButton).toHaveLength(0);
         // });
 
-        // describe('and make paper button is clicked', () => {
-        //  it('increases unsold paper counter by twice the amount', () => {
-        //  });
+        describe('and make paper button is clicked', () => {
+          beforeEach(() => {
+            act(() => {
+              getByTestId(wrapper, 'make-paper-button')
+                .find('button')
+                .simulate('click')
+            });
+          });
 
-        //  it('increases total paper counter by twice the amount', () => {
-        //  });
-        // });
+          it('increases unsold paper counter by twice the amount', () => {
+            expectResourceValue(wrapper, 'counter-paper', "2");
+          });
+
+          it('increases total paper counter by twice the amount', () => {
+            expectResourceValue(wrapper, 'counter-total-paper', "102");
+          });
+        });
       });
     });
   });

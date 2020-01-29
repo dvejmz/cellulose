@@ -7,7 +7,7 @@ const upgradesReducer = (currentUpgrades: Upgrades, action: RootReducerAction): 
     case Actions.RESOURCES_MAKE_PAPER:
       return {
         ...currentUpgrades,
-        totalPaper: currentUpgrades.totalPaper + 1,
+        totalPaper: currentUpgrades.totalPaper + (1 * action.data.multiplier),
       };
     case Actions.UPGRADES_BUY:
       const updatedUpgrades = [...currentUpgrades.upgrades];

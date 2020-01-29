@@ -3,9 +3,9 @@ import { getPurchaseRateFromDemand } from '../game/demand';
 import { Resources } from '../game/resources';
 import { RootReducerAction } from './../reducers';
 
-const getUpdatedPaperCounter = (resources: Resources): number => (
+const getUpdatedPaperCounter = (resources: Resources, multiplier: number): number => (
   resources.pulp.quantity 
-    ? resources.paper.quantity + 1
+    ? resources.paper.quantity + (1 * multiplier)
     : resources.paper.quantity
 );
 
@@ -29,7 +29,7 @@ const resourcesReducer = (currentResources: Resources, action: RootReducerAction
         ...currentResources,
         paper: {
           ...currentResources.paper,
-          quantity: getUpdatedPaperCounter(currentResources),
+          quantity: getUpdatedPaperCounter(currentResources, action.data.multiplier),
         },
         pulp: {
           ...currentResources.pulp,

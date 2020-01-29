@@ -8,18 +8,32 @@ describe('ResourcesReducer', () => {
   let reducedState: Resources;
 
   describe(Actions.RESOURCES_MAKE_PAPER, () => {
-    beforeEach(() => {
-      initialState = getMockResources();
+    it('should increase paper resource quantity by 1 if no multipliers are active', () => {
+      initialState = getMockResources({ paper: { quantity: 10 }});
       reducedState = resourcesReducer(
         initialState,
         {
           type: Actions.RESOURCES_MAKE_PAPER,
+          data: {
+            multiplier: 1,
+          },
         },
       );
+      expect(reducedState.paper.quantity).toBe(11);
     });
 
-    it('should increase paper resource quantity by increase amount', () => {
-      expect(reducedState.paper.quantity).toBe(1);
+    it('should increase paper resource quantity by multiplier amount if a multiplier is active', () => {
+      initialState = getMockResources({ paper: { quantity: 10 }});
+      reducedState = resourcesReducer(
+        initialState,
+        {
+          type: Actions.RESOURCES_MAKE_PAPER,
+          data: {
+            multiplier: 8,
+          },
+        },
+      );
+      expect(reducedState.paper.quantity).toBe(18);
     });
   });
 
