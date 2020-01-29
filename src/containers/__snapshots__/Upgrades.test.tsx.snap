@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Upgrades /> renders 1`] = `
+Array [
+  Object {
+    "cost": 100,
+    "enabled": false,
+    "id": "upgrade-ppc-2x",
+    "name": "2x PPC",
+    "unlockCost": 10,
+  },
+  Object {
+    "cost": 100,
+    "enabled": false,
+    "id": "upgrade-ppc-4x",
+    "name": "4x PPC",
+    "unlockCost": 50,
+  },
+  Object {
+    "cost": 100,
+    "enabled": true,
+    "id": "upgrade-ppc-4x",
+    "name": "8x PPC",
+    "unlockCost": 50,
+  },
+  Object {
+    "cost": 100,
+    "enabled": false,
+    "id": "upgrade-ppc-16x",
+    "name": "16x PPC",
+    "unlockCost": 110,
+  },
+]
+`;

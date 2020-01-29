@@ -1,7 +1,7 @@
 import React from 'react';
+import Upgrade from '../components/Upgrade';
 import { Upgrade as UpgradeType } from '../game/upgrades';
 import { getUnlockableUpgrades } from '../game/upgrades';
-import Upgrade from '../components/Upgrade';
 
 interface UpgradesProps {
   upgrades: UpgradeType[];

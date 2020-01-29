@@ -1,8 +1,8 @@
-import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
-import { getMockUpgrade } from '../utils/test/mocks';
+import React from 'react';
 import Upgrade from '../components/Upgrade';
 import { UpgradeType } from '../game/upgrades';
+import { getMockUpgrade } from '../utils/test/mocks';
 import Upgrades from './Upgrades';
 
 describe('<Upgrades />', () => {
@@ -26,8 +26,7 @@ describe('<Upgrades />', () => {
   });
   
   it('renders', () => {
-    expect(wrapper.exists()).toBeTruthy();
-    //expect(upgrades).toMatchSnapshot();
+    expect(upgrades).toMatchSnapshot();
   });
 
   it('only shows inactive upgrades with a paper cost less or equal than current paper', () => {

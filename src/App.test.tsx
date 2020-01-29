@@ -244,9 +244,9 @@ describe('App', () => {
         });
 
         // TODO: not working. Button shows regardless
-        //it('should still show upgrade', () => {
+        // it('should still show upgrade', () => {
         //  expect(upgradeButton).toHaveLength(1);
-        //});
+        // });
       });
     });
 
@@ -268,9 +268,9 @@ describe('App', () => {
         // Might need storing unlockableUpgrades
         // as another full-fledged piece of data
         // But it's duplicate data???
-        //it('removes upgrade button', () => {
+        // it('removes upgrade button', () => {
         // expect(upgradeButton).toHaveLength(0);
-        //});
+        // });
 
         // describe('and make paper button is clicked', () => {
         //  it('increases unsold paper counter by twice the amount', () => {
