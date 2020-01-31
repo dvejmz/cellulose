@@ -8,7 +8,6 @@ export interface Upgrade {
 
 export interface Upgrades {
   totalPaper: number;
-  // TODO: currentTier?
   upgrades: Upgrade[];
 };
 
@@ -17,6 +16,7 @@ export const UPGRADE_UNLOCK_TIER_1 = 100;
 export const UPGRADE_ID_PPC_2X = 'upgrade-ppc-2x';
 export const UPGRADE_ID_PPC_4X = 'upgrade-ppc-4x';
 export const UPGRADE_ID_PPC_8X = 'upgrade-ppc-8x';
+export const UPGRADE_ID_PPC_16X = 'upgrade-ppc-16x';
 
 export const getUpgradeById = (id: string, upgrades: Upgrade[]): (Upgrade | undefined) => (
   [ ...upgrades ].find(u => u.id === id)
@@ -48,6 +48,8 @@ export const getActivePpcMultiplier = (upgrades: Upgrade[]): number => {
       return 4;
     case UPGRADE_ID_PPC_8X:
       return 8;
+    case UPGRADE_ID_PPC_16X:
+      return 16;
     default:
       return 1;
   }
