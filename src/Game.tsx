@@ -123,7 +123,7 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
   return (
     <div className="container">
       <div className="columns">
-        <div className="column col-2">
+        <div className="column col-2 col-md-12">
           <MakePaperButton onClick={handleMakePaperButtonClick} />
           <Upgrades
             upgrades={upgrades.upgrades}
@@ -132,7 +132,7 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
             onBuyClick={handleBuyUpgradeClick}
           />
         </div>
-        <div className="column col-2">
+        <div className="column col-6 col-md-12">
           <Counter
             id="total-paper"
             name="Total Paper"
