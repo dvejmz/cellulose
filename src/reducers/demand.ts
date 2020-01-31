@@ -12,10 +12,10 @@ const demandReducer = (currentDemand: Demand, action: RootReducerAction): Demand
         demandPct: getDemand(
           // These values serve as the seed for the demand curve and price elasticity
           // functions used to calculate purchase rates
-          0.05, // high demand price
-          50, // high demand qty
-          0.1,   // low demand price
-          40,  // low demand qty
+          0.05,     // high demand price
+          70,       // high demand qty
+          0.1,      // low demand price
+          40,       // low demand qty
           action.data.newPrice
         ),
         price: action.data.newPrice,
