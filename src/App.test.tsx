@@ -12,24 +12,25 @@ describe('App', () => {
   let initialState: GameState;
 
   beforeEach(() => {
+    const initialPaperPrice = 0.02;
     const appConfig: AppConfig = {
       currency: '£',
       baseGameCycleDurationMs: 1000,
-      paperPriceChangeStep: .05,
+      paperPriceChangeStep: .01,
     };
 
     initialState = {
       funds: 100,
       demand: {
         demandPct: 40.0,
-        price: 0.2,
+        price: initialPaperPrice,
       },
       resources: {
         paper: {
           name: 'Paper',
           quantity: 0,
           quantityUnit: 'sheets',
-          price: 0.2,
+          price: initialPaperPrice,
           purchaseRate: 0,
         },
         pulp: {
@@ -90,11 +91,11 @@ describe('App', () => {
   });
 
   it('should show current demand percentage', () => {
-    expect(getByTestId(wrapper, 'counter-demand').text()).toContain('20.02 %');
+    expect(getByTestId(wrapper, 'counter-demand').text()).toContain('88.06 %');
   });
 
   it('should show paper price', () => {
-    expect(getByTestId(wrapper, 'counter-paper-price').text()).toContain('£0.20');
+    expect(getByTestId(wrapper, 'counter-paper-price').text()).toContain('£0.02');
   });
 
   it('should show price adjustment buttons', () => {
@@ -185,11 +186,11 @@ describe('App', () => {
     });
 
     it('paper price should increase by set amount', () => {
-      expect(getByTestId(wrapper, 'counter-paper-price').text()).toContain('£0.25');
+      expect(getByTestId(wrapper, 'counter-paper-price').text()).toContain('£0.03');
     });
 
     it('demand percentage decreases', () => {
-      expect(getByTestId(wrapper, 'counter-demand').text()).toContain('10.00 %');
+      expect(getByTestId(wrapper, 'counter-demand').text()).toContain('82.00 %');
     });
   });
 
@@ -201,11 +202,11 @@ describe('App', () => {
     });
 
     it('paper price should decrease by set amount', () => {
-      expect(getByTestId(wrapper, 'counter-paper-price').text()).toContain('£0.15');
+      expect(getByTestId(wrapper, 'counter-paper-price').text()).toContain('£0.01');
     });
 
     it('demand percentage increases', () => {
-      expect(getByTestId(wrapper, 'counter-demand').text()).toContain('30.00 %');
+      expect(getByTestId(wrapper, 'counter-demand').text()).toContain('94.00 %');
     });
   });
 
