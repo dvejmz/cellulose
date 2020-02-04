@@ -9,7 +9,7 @@ import PlayerResource from './components/Resource';
 import Upgrades from './containers/Upgrades';
 import { Demand } from './game/demand';
 import { Resources } from './game/resources';
-import { Upgrades as UpgradesType, getActivePpcMultiplier } from './game/upgrades';
+import { getActivePpcMultiplier, Upgrades as UpgradesType } from './game/upgrades';
 
 export interface RootReducerAction {
   type: string;

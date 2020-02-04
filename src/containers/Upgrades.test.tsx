@@ -1,7 +1,7 @@
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import Upgrade from '../components/Upgrade';
-import { UpgradeType } from '../game/upgrades';
+import { Upgrade as UpgradeType } from '../game/upgrades';
 import { getMockUpgrade } from '../utils/test/mocks';
 import Upgrades from './Upgrades';
 

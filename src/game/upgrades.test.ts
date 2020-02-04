@@ -1,6 +1,6 @@
 import { getMockUpgrade } from '../utils/test/mocks';
 import { Upgrade } from './upgrades';
-import { getUnlockableUpgrades, getUpgradeById, getActivePpcMultiplier } from './upgrades';
+import { getActivePpcMultiplier, getUnlockableUpgrades, getUpgradeById } from './upgrades';
 
 describe('Upgrades', () => {
   let upgrades: Upgrade[];
