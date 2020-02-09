@@ -18,6 +18,8 @@ export const UPGRADE_ID_PPC_4X = 'upgrade-ppc-4x';
 export const UPGRADE_ID_PPC_8X = 'upgrade-ppc-8x';
 export const UPGRADE_ID_PPC_16X = 'upgrade-ppc-16x';
 
+export const UPGRADE_ID_PAPERMAKER_1X = 'upgrade-papermaker-1x';
+
 export const getUpgradeById = (id: string, upgrades: Upgrade[]): (Upgrade | undefined) => (
   [ ...upgrades ].find(u => u.id === id)
 );

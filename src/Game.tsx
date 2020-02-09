@@ -9,7 +9,13 @@ import PlayerResource from './components/Resource';
 import Upgrades from './containers/Upgrades';
 import { Demand } from './game/demand';
 import { Resources } from './game/resources';
-import { getActivePpcMultiplier, Upgrades as UpgradesType } from './game/upgrades';
+import {
+  getUpgradeById,
+  getActivePpcMultiplier,
+  Upgrades as UpgradesType,
+
+  UPGRADE_ID_PAPERMAKER_1X,
+} from './game/upgrades';
 
 export interface RootReducerAction {
   type: string;
@@ -81,9 +87,17 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       sellPaper();
+      applyActiveUpgrades();
     }, props.config.baseGameCycleDurationMs);
     return () => clearTimeout(timer);
   });
+
+  const applyActiveUpgrades = () => {
+    const paperMakerUpgrade = getUpgradeById(UPGRADE_ID_PAPERMAKER_1X, upgrades.upgrades);
+    if (paperMakerUpgrade?.enabled) {
+      makePaper(1);
+    }
+  };
 
   const sellPaper = () => {
     if (resources.paper) {
@@ -94,10 +108,14 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
     }
   };
 
-  const handleMakePaperButtonClick = () => {
+  const makePaper = (multiplier: number) => {
     if (resources.pulp.quantity) {
-      dispatch({ type: RESOURCES_MAKE_PAPER, data: { multiplier: getActivePpcMultiplier(upgrades.upgrades) } });
+      dispatch({ type: RESOURCES_MAKE_PAPER, data: { multiplier }});
     }
+  };
+
+  const handleMakePaperButtonClick = () => {
+    makePaper(getActivePpcMultiplier(upgrades.upgrades));
   };
 
   const handleBuyPulpClick = () => {

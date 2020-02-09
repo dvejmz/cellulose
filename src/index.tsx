@@ -58,10 +58,17 @@ const initialState: GameState = {
         unlockCost: 800,
         enabled: false,
       },
+      {
+        id: 'upgrade-papermaker-1x',
+        name: 'PaperMaker',
+        cost: 1,
+        unlockCost: 100,
+        enabled: false,
+      },
     ],
   },
 };
-ReactDOM.render(createApp(initialState), document.getElementById('root'));
+ReactDOM.render(createApp(initialState, { currency: '£', baseGameCycleDurationMs: 100, paperPriceChangeStep: .01 }), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -5,7 +5,13 @@ import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 import Upgrade from './components/Upgrade';
 import { GameState } from './Game';
-import * as Upgrades from './game/upgrades';
+
+import {
+  expectFundsValue,
+  expectResourceValue,
+  findCounterValue,
+  getByTestId,
+} from './integration/utils';
 
 describe('App', () => {
   let wrapper: ReactWrapper;
@@ -209,107 +215,4 @@ describe('App', () => {
       expect(getByTestId(wrapper, 'counter-demand').text()).toContain('94.00 %');
     });
   });
-
-  describe('when total paper produced reaches 2x paper-per-click upgrade unlock cost', () => {
-    let upgradeButton: any;
-
-    beforeEach(() => {
-      const state = { ...initialState };
-      state.upgrades.totalPaper = Upgrades.UPGRADE_UNLOCK_TIER_1;
-      wrapper = mount(createApp(state));
-      upgradeButton = getByTestId(wrapper, 'upgrade-ppc-2x');
-    });
-
-    it('shows upgrade', () => {
-      expect(upgradeButton).toHaveLength(1);
-    });
-
-    describe('and there are not enough funds to buy upgrade', () => {
-      let state: GameState;
-
-      beforeEach(() => {
-        state = { ...initialState };
-        state.upgrades.totalPaper = Upgrades.UPGRADE_UNLOCK_TIER_1;
-        state.funds = 1.00;
-        wrapper = mount(createApp(state));
-        upgradeButton = getByTestId(wrapper, 'upgrade-ppc-2x');
-      });
-
-      describe('and upgrade is clicked', () => {
-        beforeEach(() => {
-          act(() => {
-            upgradeButton
-              .find('button')
-              .simulate('click');
-          });
-        });
-
-        // TODO: not working. Button shows regardless
-        // it('should still show upgrade', () => {
-        //  expect(upgradeButton).toHaveLength(1);
-        // });
-      });
-    });
-
-    describe('and there are enough funds to buy upgrade', () => {
-      describe('and upgrade is clicked', () => {
-        beforeEach(() => {
-          act(() => {
-            upgradeButton
-              .find('button')
-              .simulate('click');
-          });
-        });
-
-        it('subtracts upgrade cost from funds', () => {
-          expectFundsValue(wrapper, "0.00");
-        });
-
-        // TODO: this test won't pass
-        // Might need storing unlockableUpgrades
-        // as another full-fledged piece of data
-        // But it's duplicate data???
-        // it('removes upgrade button', () => {
-        // expect(upgradeButton).toHaveLength(0);
-        // });
-
-        describe('and make paper button is clicked', () => {
-          beforeEach(() => {
-            act(() => {
-              getByTestId(wrapper, 'make-paper-button')
-                .find('button')
-                .simulate('click')
-            });
-          });
-
-          it('increases unsold paper counter by twice the amount', () => {
-            expectResourceValue(wrapper, 'counter-paper', "2");
-          });
-
-          it('increases total paper counter by twice the amount', () => {
-            expectResourceValue(wrapper, 'counter-total-paper', "102");
-          });
-        });
-      });
-    });
-  });
 });
-
-const expectResourceValue = (wrapper: ReactWrapper, testId: string, expectedValue: string): void => (
-  expect(findCounterValue(wrapper, testId)).toEqual(expectedValue)
-);
-
-const expectFundsValue = (wrapper: ReactWrapper, expectedAmount: string): void => (
-  expect(getByTestId(wrapper, 'funds')
-    .find('.funds__amount').text())
-    .toEqual(expectedAmount)
-);
-
-const findCounterValue = (wrapper: ReactWrapper, testId: string): string | number => (
-  getByTestId(wrapper, testId)
-    .find(`.counter__value`).text()
-);
-
-const getByTestId = (wrapper: ReactWrapper, testId: string): ReactWrapper => (
-  wrapper.find(`[data-test-id="${testId}"]`)
-);
