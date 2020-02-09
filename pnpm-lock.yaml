@@ -1,22 +1,22 @@
 dependencies:
   '@testing-library/jest-dom': 4.2.4
-  '@testing-library/react': 9.4.0_react-dom@16.12.0+react@16.12.0
+  '@testing-library/react': 9.4.0_c5181c91dc2649aab1ac64a6229a96b4
   '@testing-library/user-event': 7.2.1
   '@types/jest': 24.9.0
   '@types/node': 12.12.25
   '@types/react': 16.9.18
   '@types/react-dom': 16.9.5
   node-sass: 4.13.1
-  react: 16.12.0
+  react: 0.0.0-experimental-241c4467e
   react-combine-reducers: 1.0.2
-  react-dom: 16.12.0_react@16.12.0
+  react-dom: 0.0.0-experimental-241c4467e_daf89c753d7d40c0d3f67a8ecf70a8f2
   react-scripts: 3.3.0_a4f1093162180b0de057e31a5d2c1cc3
   spectre.css: 0.5.8
   typescript: 3.7.5
 devDependencies:
   '@types/enzyme': 3.10.4
   enzyme: 3.11.0
-  enzyme-adapter-react-16: 1.15.2_3302d41cb01481e7edfc8c11c26d98df
+  enzyme-adapter-react-16: 1.15.2_445d8a7b79fe215582582dcaac9aadf2
   tslint: 5.20.1_typescript@3.7.5
   tslint-config-prettier: 1.18.0
 lockfileVersion: 5.1
@@ -1561,13 +1561,13 @@ packages:
       npm: '>=6'
     resolution:
       integrity: sha512-j31Bn0rQo12fhCWOUWy9fl7wtqkp7In/YP2p5ZFyRuiiB9Qs3g+hS4gAmDWONbAHcRmVooNJ5eOHQDCOmUFXHg==
-  /@testing-library/react/9.4.0_react-dom@16.12.0+react@16.12.0:
+  /@testing-library/react/9.4.0_c5181c91dc2649aab1ac64a6229a96b4:
     dependencies:
       '@babel/runtime': 7.8.3
       '@testing-library/dom': 6.11.0
       '@types/testing-library__react': 9.1.2
-      react: 16.12.0
-      react-dom: 16.12.0_react@16.12.0
+      react: 0.0.0-experimental-241c4467e
+      react-dom: 0.0.0-experimental-241c4467e_daf89c753d7d40c0d3f67a8ecf70a8f2
     dev: false
     engines:
       node: '>=8'
@@ -2019,7 +2019,7 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-quoaXsZ9/BLNae5yiNoUz+Nhkwz83GhWwtYFglcjEQB2NDHCIpApbqXxIFnm4Pq/Nvhrsq5sYJFyohrrxnTGAA==
-  /airbnb-prop-types/2.15.0_react@16.12.0:
+  /airbnb-prop-types/2.15.0_daf89c753d7d40c0d3f67a8ecf70a8f2:
     dependencies:
       array.prototype.find: 2.1.0
       function.prototype.name: 1.1.2
@@ -2030,7 +2030,7 @@ packages:
       object.entries: 1.1.1
       prop-types: 15.7.2
       prop-types-exact: 1.2.0
-      react: 16.12.0
+      react: 0.0.0-experimental-241c4467e
       react-is: 16.12.0
     dev: true
     peerDependencies:
@@ -4133,19 +4133,19 @@ packages:
   /entities/2.0.0:
     resolution:
       integrity: sha512-D9f7V0JSRwIxlRI2mjMqufDrRDnx8p+eEOz7aUM9SuvF8gsBzra0/6tbjl1m8eQHrZlYj6PxqE00hZ1SAIKPLw==
-  /enzyme-adapter-react-16/1.15.2_3302d41cb01481e7edfc8c11c26d98df:
+  /enzyme-adapter-react-16/1.15.2_445d8a7b79fe215582582dcaac9aadf2:
     dependencies:
       enzyme: 3.11.0
-      enzyme-adapter-utils: 1.13.0_react@16.12.0
+      enzyme-adapter-utils: 1.13.0_daf89c753d7d40c0d3f67a8ecf70a8f2
       enzyme-shallow-equal: 1.0.1
       has: 1.0.3
       object.assign: 4.1.0
       object.values: 1.1.1
       prop-types: 15.7.2
-      react: 16.12.0
-      react-dom: 16.12.0_react@16.12.0
+      react: 0.0.0-experimental-241c4467e
+      react-dom: 0.0.0-experimental-241c4467e_daf89c753d7d40c0d3f67a8ecf70a8f2
       react-is: 16.12.0
-      react-test-renderer: 16.12.0_react@16.12.0
+      react-test-renderer: 16.12.0_daf89c753d7d40c0d3f67a8ecf70a8f2
       semver: 5.7.1
     dev: true
     peerDependencies:
@@ -4154,14 +4154,14 @@ packages:
       react-dom: ^16.0.0-0
     resolution:
       integrity: sha512-SkvDrb8xU3lSxID8Qic9rB8pvevDbLybxPK6D/vW7PrT0s2Cl/zJYuXvsd1EBTz0q4o3iqG3FJhpYz3nUNpM2Q==
-  /enzyme-adapter-utils/1.13.0_react@16.12.0:
+  /enzyme-adapter-utils/1.13.0_daf89c753d7d40c0d3f67a8ecf70a8f2:
     dependencies:
-      airbnb-prop-types: 2.15.0_react@16.12.0
+      airbnb-prop-types: 2.15.0_daf89c753d7d40c0d3f67a8ecf70a8f2
       function.prototype.name: 1.1.2
       object.assign: 4.1.0
       object.fromentries: 2.0.2
       prop-types: 15.7.2
-      react: 16.12.0
+      react: 0.0.0-experimental-241c4467e
       semver: 5.7.1
     dev: true
     peerDependencies:
@@ -6454,6 +6454,9 @@ packages:
       node: '>=6'
     peerDependencies:
       jest-resolve: '*'
+    peerDependenciesMeta:
+      jest-resolve:
+        optional: true
     resolution:
       integrity: sha512-pgFw2tm54fzgYvc/OHrnysABEObZCUNFnhjoRjaVOCN8NYc032/gVjPaHD4Aq6ApkSieWtfKAFQtmDKAmhupnQ==
   /jest-regex-util/24.9.0:
@@ -9392,17 +9395,17 @@ packages:
       node: '>=8.10'
     resolution:
       integrity: sha512-8OKSJvl8ccXJDNf0YGw377L9v1OnT16skD/EuZWm0M/yr255etP4x4kuUCT1EfFfJ7Rhc4ZTpPTfPrvgiXa50Q==
-  /react-dom/16.12.0_react@16.12.0:
+  /react-dom/0.0.0-experimental-241c4467e_daf89c753d7d40c0d3f67a8ecf70a8f2:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       prop-types: 15.7.2
-      react: 16.12.0
-      scheduler: 0.18.0
+      react: 0.0.0-experimental-241c4467e
+      scheduler: 0.0.0-experimental-241c4467e
     peerDependencies:
-      react: ^16.0.0
+      react: 0.0.0-experimental-241c4467e
     resolution:
-      integrity: sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
+      integrity: sha512-8//fSgwwhxuq30fq0e9DRGxlvhNwMKr6JYbTphQHntqf2ABc76AlxWHGhKaCsTe6P5DtZqzYC2bEFv4pxrIOHw==
   /react-error-overlay/6.0.4:
     dev: false
     resolution:
@@ -9479,11 +9482,11 @@ packages:
         optional: true
     resolution:
       integrity: sha512-hzPc6bxCc9GnsspWqk494c2Gpd0dRbk/C8q76BNQIENi9GMwoxFljOEcZoZcpFpJgQ45alxFR6QaLt+51qie7g==
-  /react-test-renderer/16.12.0_react@16.12.0:
+  /react-test-renderer/16.12.0_daf89c753d7d40c0d3f67a8ecf70a8f2:
     dependencies:
       object-assign: 4.1.1
       prop-types: 15.7.2
-      react: 16.12.0
+      react: 0.0.0-experimental-241c4467e
       react-is: 16.12.0
       scheduler: 0.18.0
     dev: true
@@ -9491,7 +9494,7 @@ packages:
       react: ^16.0.0
     resolution:
       integrity: sha512-Vj/teSqt2oayaWxkbhQ6gKis+t5JrknXfPVo+aIJ8QwYAqMPH77uptOdrlphyxl8eQI/rtkOYg86i/UWkpFu0w==
-  /react/16.12.0:
+  /react/0.0.0-experimental-241c4467e:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
@@ -9499,7 +9502,7 @@ packages:
     engines:
       node: '>=0.10.0'
     resolution:
-      integrity: sha512-fglqy3k5E+81pA8s+7K0/T3DBCF0ZDOher1elBFzF7O6arXJgzyu/FW+COxFvAWXJoJN9KIZbT2LXlukwphYTA==
+      integrity: sha512-aLS3k3Y/HVGE3dg/csk1XYXiOx6U4nE8EoVZMz7gIk/esopM888c+6jgNNHcC0U+5rNddLFUbHtEAFGl/qJS4Q==
   /read-pkg-up/1.0.1:
     dependencies:
       find-up: 1.1.2
@@ -10065,10 +10068,17 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-Ydydq3zC+WYDJK1+gRxRapLIED9PWeSuuS41wqyoRmzvhhh9nc+QQrVMKJYzJFULazeGhzSV0QleN2wD3boh2g==
+  /scheduler/0.0.0-experimental-241c4467e:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    resolution:
+      integrity: sha512-fHXMM5hNcuamwKplv4QVYqNx5KNU6xtSYvm6TImMvscpn+XWFKspu+5s9Aci8F8EGQMlee85zDalKZupfPSaQw==
   /scheduler/0.18.0:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+    dev: true
     resolution:
       integrity: sha512-agTSHR1Nbfi6ulI0kYNK0203joW2Y5W4po4l+v03tOoiJKpTBbxpNhWDvqc/4IcOw+KLmSiQLTasZ4cab2/UWQ==
   /schema-utils/1.0.0:
@@ -11934,9 +11944,9 @@ specifiers:
   enzyme: ^3.11.0
   enzyme-adapter-react-16: ^1.15.2
   node-sass: ^4.13.0
-  react: ^16.12.0
+  react: ^0.0.0-experimental-241c4467e
   react-combine-reducers: ^1.0.2
-  react-dom: ^16.12.0
+  react-dom: ^0.0.0-experimental-241c4467e
   react-scripts: 3.3.0
   spectre.css: ^0.5.8
   tslint: ^5.20.1

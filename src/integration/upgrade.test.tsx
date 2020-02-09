@@ -1,14 +1,12 @@
 import { mount, ReactWrapper } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import createApp, { AppConfig } from '../App';
-import Upgrade from '../components/Upgrade';
 import { GameState } from '../Game';
 import * as Upgrades from '../game/upgrades';
 
 import {
   expectFundsValue,
   expectResourceValue,
-  findCounterValue,
   getByTestId,
 } from './utils';
 
@@ -166,7 +164,7 @@ describe('Upgrades', () => {
 
     it('should increase paper by increase amount after some time elapses', () => {
       act(() => {
-        jest.runAllTimers();
+        jest.runOnlyPendingTimers();
       });
       expectResourceValue(wrapper, 'counter-total-paper', '1');
     });

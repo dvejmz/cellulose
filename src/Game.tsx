@@ -10,11 +10,11 @@ import Upgrades from './containers/Upgrades';
 import { Demand } from './game/demand';
 import { Resources } from './game/resources';
 import {
-  getUpgradeById,
   getActivePpcMultiplier,
-  Upgrades as UpgradesType,
-
+  getUpgradeById,
   UPGRADE_ID_PAPERMAKER_1X,
+
+  Upgrades as UpgradesType,
 } from './game/upgrades';
 
 export interface RootReducerAction {
@@ -78,19 +78,6 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
         dispatch,
     }});
   };
-  const memoizedInitialiseGameState = useCallback(initialiseGameState, []);
-
-  useEffect(() => {
-    memoizedInitialiseGameState();
-  }, [memoizedInitialiseGameState]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      sellPaper();
-      applyActiveUpgrades();
-    }, props.config.baseGameCycleDurationMs);
-    return () => clearTimeout(timer);
-  });
 
   const applyActiveUpgrades = () => {
     const paperMakerUpgrade = getUpgradeById(UPGRADE_ID_PAPERMAKER_1X, upgrades.upgrades);
@@ -107,6 +94,28 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
       });
     }
   };
+
+  const cbInitialiseGameState = useCallback(initialiseGameState, []);
+  const cbSellPaper = useCallback(sellPaper, [resources.paper]);
+  const cbApplyActiveUpgrades = useCallback(applyActiveUpgrades, [upgrades.upgrades]);
+
+  useEffect(() => {
+    cbInitialiseGameState();
+  }, [cbInitialiseGameState]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      cbApplyActiveUpgrades();
+    }, props.config.baseGameCycleDurationMs * 1.5);
+    return () => clearInterval(timer);
+  }, [props.config.baseGameCycleDurationMs, cbApplyActiveUpgrades]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      cbSellPaper();
+    }, props.config.baseGameCycleDurationMs);
+    return () => clearInterval(timer);
+  }, [props.config.baseGameCycleDurationMs, cbSellPaper]);
 
   const makePaper = (multiplier: number) => {
     if (resources.pulp.quantity) {
