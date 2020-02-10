@@ -153,6 +153,7 @@ describe('Upgrades', () => {
       state.upgrades.upgrades = [
         {
           id: 'upgrade-papermaker-1x',
+          previousId: null,
           name: 'PaperMaker',
           cost: 100,
           unlockCost: 10,

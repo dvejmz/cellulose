@@ -52,6 +52,7 @@ describe('App', () => {
         upgrades: [
           {
             id: 'upgrade-ppc-2x',
+            previousId: null,
             name: '2x PPC',
             cost: 100,
             unlockCost: 10,
