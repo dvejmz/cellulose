@@ -32,6 +32,7 @@ const initialState: GameState = {
     upgrades: [
       {
         id: 'upgrade-ppc-2x',
+        previousId: null,
         name: '2x PPC',
         cost: 10,
         unlockCost: 100,
@@ -39,6 +40,7 @@ const initialState: GameState = {
       },
       {
         id: 'upgrade-ppc-4x',
+        previousId: 'upgrade-ppc-2x',
         name: '4x PPC',
         cost: 15,
         unlockCost: 200,
@@ -46,6 +48,7 @@ const initialState: GameState = {
       },
       {
         id: 'upgrade-ppc-8x',
+        previousId: 'upgrade-ppc-4x',
         name: '8x PPC',
         cost: 20,
         unlockCost: 400,
@@ -53,6 +56,7 @@ const initialState: GameState = {
       },
       {
         id: 'upgrade-ppc-16x',
+        previousId: 'upgrade-ppc-8x',
         name: '16x PPC',
         cost: 30,
         unlockCost: 800,
@@ -60,6 +64,7 @@ const initialState: GameState = {
       },
       {
         id: 'upgrade-papermaker-1x',
+        previousId: null,
         name: 'PaperMaker',
         cost: 15,
         unlockCost: 400,

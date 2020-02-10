@@ -1,5 +1,6 @@
 export interface Upgrade {
   id: string;
+  previousId: string | null;
   name: string;
   cost: number;
   unlockCost: number;
@@ -28,16 +29,26 @@ export const getInactiveUpgrades = (upgrades: Upgrade[]): Upgrade[] => (
   [ ...upgrades ].filter(u => !u.enabled)
 );
 
-export const getUnlockableUpgrades = (paperQty: number, upgrades: Upgrade[]): Upgrade[]  => (
-  getInactiveUpgrades(upgrades).filter(u => u.unlockCost <= paperQty)
-);
+const getActiveUpgrades = (upgrades: Upgrade[]) =>
+  upgrades.filter(u => u.enabled).sort((lhs, rhs) => rhs.cost - lhs.cost);
+
+// just fetch a list of everything under < UC which is not enabled and then make a reverse linked list with references
+// to the previous, active upgrade for a possibly unlockable upgrade
+export const getUnlockableUpgrades = (paperQty: number, upgrades: Upgrade[]): Upgrade[]  => {
+  const activeUpgrades = getActiveUpgrades(upgrades);
+  const inactiveUpgrades = getInactiveUpgrades(upgrades).filter(u => u.unlockCost <= paperQty);
+  return inactiveUpgrades
+    .filter(
+      iu => (iu.previousId === null
+              || activeUpgrades.findIndex(au => au.id === iu.previousId)) !== -1);
+};
 
 export const getActivePpcMultiplier = (upgrades: Upgrade[]): number => {
   if (!upgrades.length) {
     return 1;
   }
 
-  const activeUpgrades = upgrades.filter(u => u.enabled).sort((lhs, rhs) => rhs.cost - lhs.cost)
+  const activeUpgrades = getActiveUpgrades(upgrades);
   if (!activeUpgrades.length) {
     return 1;
   }

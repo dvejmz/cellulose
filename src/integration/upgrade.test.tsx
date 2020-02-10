@@ -53,6 +53,7 @@ describe('Upgrades', () => {
             cost: 100,
             unlockCost: 10,
             enabled: false,
+            previousId: null,
           },
         ],
       }

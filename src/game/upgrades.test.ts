@@ -4,6 +4,7 @@ import { getActivePpcMultiplier, getUnlockableUpgrades, getUpgradeById } from '.
 
 describe('Upgrades', () => {
   let upgrades: Upgrade[];
+
   beforeEach(() => {
     upgrades = [
       getMockUpgrade({ enabled: true, unlockCost: 100 }),
@@ -13,18 +14,10 @@ describe('Upgrades', () => {
     ];
   });
 
-  it('should retrieve all inactive upgrades unlockable for an unlock cost', () => {
-    const actual = getUnlockableUpgrades(750, upgrades);
-    const expected: Upgrade[] = [
-      getMockUpgrade({ enabled: false, unlockCost: 500 }),
-      getMockUpgrade({ enabled: false, unlockCost: 750 }),
-    ];
-    expect(actual).toEqual(expected);
-  });
-
   it('should return an upgrade given its ID', () => {
     const expected: Upgrade = {
       id: 'upgrade-ppc-4x',
+      previousId: null,
       name: 'PPC 4x',
       cost: 100,
       unlockCost: 750,
@@ -33,6 +26,33 @@ describe('Upgrades', () => {
     upgrades.push(expected);
     const actual = getUpgradeById('upgrade-ppc-4x', upgrades);
     expect(actual).toEqual(expected);
+  });
+
+  describe('getUnlockableUpgrades', () => {
+    it('should retrieve all inactive upgrades unlockable for an unlock cost', () => {
+      const actual = getUnlockableUpgrades(750, upgrades);
+      const expected: Upgrade[] = [
+        getMockUpgrade({ enabled: false, unlockCost: 500 }),
+        getMockUpgrade({ enabled: false, unlockCost: 750 }),
+      ];
+      expect(actual).toEqual(expected);
+    });
+
+    it('should return all upgrades with met dependencies and in unlockable state', () => {
+      upgrades = [
+        getMockUpgrade({ id: 'upgrade-ppc-2x', enabled: true, unlockCost: 100 }),
+        getMockUpgrade({ id: 'upgrade-ppc-4x', previousId: 'upgrade-ppc-2x', enabled: false, unlockCost: 500 }),
+        getMockUpgrade({ id: 'upgrade-ppc-8x', previousId: 'upgrade-ppc-4x', enabled: false, unlockCost: 600 }),
+        getMockUpgrade({ id: 'upgrade-ppm-1x', enabled: false, unlockCost: 300 }),
+        getMockUpgrade({ id: 'upgrade-ppm-2x', previousId: 'upgrade-ppm-1x', enabled: false, unlockCost: 700 }),
+      ];
+      const expected = [
+        getMockUpgrade({ id: 'upgrade-ppc-4x', previousId: 'upgrade-ppc-2x', enabled: false, unlockCost: 500 }),
+        getMockUpgrade({ id: 'upgrade-ppm-1x', enabled: false, unlockCost: 300 }),
+      ];
+      const actual = getUnlockableUpgrades(750, upgrades);
+      expect(actual).toEqual(expected);
+    });
   });
 });
 

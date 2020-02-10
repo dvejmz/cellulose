@@ -4,23 +4,26 @@ exports[`<Upgrades /> renders 1`] = `
 Array [
   Object {
     "cost": 100,
-    "enabled": false,
+    "enabled": true,
     "id": "upgrade-ppc-2x",
     "name": "2x PPC",
+    "previousId": null,
     "unlockCost": 10,
-  },
-  Object {
-    "cost": 100,
-    "enabled": false,
-    "id": "upgrade-ppc-4x",
-    "name": "4x PPC",
-    "unlockCost": 50,
   },
   Object {
     "cost": 100,
     "enabled": true,
     "id": "upgrade-ppc-4x",
+    "name": "4x PPC",
+    "previousId": "upgrade-ppc-2x",
+    "unlockCost": 50,
+  },
+  Object {
+    "cost": 100,
+    "enabled": false,
+    "id": "upgrade-ppc-8x",
     "name": "8x PPC",
+    "previousId": "upgrade-ppc-4x",
     "unlockCost": 50,
   },
   Object {
@@ -28,6 +31,7 @@ Array [
     "enabled": false,
     "id": "upgrade-ppc-16x",
     "name": "16x PPC",
+    "previousId": "upgrade-ppc-8x",
     "unlockCost": 110,
   },
 ]

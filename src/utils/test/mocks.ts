@@ -42,6 +42,7 @@ export const getMockPulpResource = (overrides: any = {}): Resource => ({
 
 export const getMockUpgrade = (overrides: any = {}): Upgrade => ({
   id: 'upgrade-ppc-2x',
+  previousId: null,
   name: '2x PPC',
   cost: 100,
   unlockCost: 10,
