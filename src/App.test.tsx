@@ -47,6 +47,12 @@ describe('App', () => {
           purchaseRate: 1,
         },
       },
+      history: {
+        funds: [],
+        paper: {
+          purchaseRate: [],
+        },
+      },
       upgrades: {
         totalPaper: 0,
         upgrades: [
