@@ -12,6 +12,7 @@
         "@types/react-dom": "^16.9.0",
         "node-sass": "^4.13.0",
         "react": "0.0.0-experimental-241c4467e",
+        "react-charts": "^2.0.0-beta.6",
         "react-combine-reducers": "^1.0.2",
         "react-dom": "0.0.0-experimental-241c4467e",
         "react-scripts": "3.3.0",
