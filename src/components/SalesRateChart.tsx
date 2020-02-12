@@ -23,8 +23,8 @@ const SalesRateChart: React.FC<SalesRateChartProps> = (props: SalesRateChartProp
   return (
     <div
       style={{
-        width: '400px',
-        height: '300px',
+        width: '225px',
+        height: '150px',
       }}
     >
       <h4>{props.label}</h4>
