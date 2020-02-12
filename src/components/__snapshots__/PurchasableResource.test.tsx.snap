@@ -1,3 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PurchasableResource /> renders ok 1`] = `ShallowWrapper {}`;
+exports[`<PurchasableResource /> renders ok 1`] = `
+<div
+  className="resource-purchasable"
+  data-test-id="resource-purchasable-pulp"
+>
+  <Resource
+    currency="£"
+    id="pulp"
+    name="Pulp"
+    onBuyClick={[Function]}
+    price={10}
+    purchaseRate={1}
+    quantity={9001}
+    quantityUnit="kg"
+  />
+  <button
+    className="resource-purchasable__buy-button btn btn-sm"
+    onClick={[Function]}
+  >
+    Buy 
+    <span
+      className="resource-purchasable__buy-price"
+    >
+      (
+      £10
+      )
+    </span>
+  </button>
+</div>
+`;

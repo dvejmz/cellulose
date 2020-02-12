@@ -1,3 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Counter /> renders 1`] = `ShallowWrapper {}`;
+exports[`<Counter /> renders 1`] = `
+<div
+  className="counter margin-top-right"
+  data-test-id="counter-total-paper"
+>
+  <strong
+    className="counter__name capitalise"
+  >
+    Total Paper
+  </strong>
+  :
+   
+  <span
+    className="counter__value"
+  >
+    9001
+  </span>
+   
+  <span
+    className="counter__unit"
+  >
+    sheets
+  </span>
+</div>
+`;

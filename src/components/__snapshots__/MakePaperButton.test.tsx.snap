@@ -1,3 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MakePaperButton /> renders 1`] = `ShallowWrapper {}`;
+exports[`<MakePaperButton /> renders 1`] = `
+<div
+  className="make-paper"
+  data-test-id="make-paper-button"
+>
+  <button
+    className="btn btn-primary make-paper__button"
+    onClick={[Function]}
+  >
+    Make Paper
+  </button>
+</div>
+`;

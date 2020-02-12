@@ -1,3 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Resource /> renders ok 1`] = `ShallowWrapper {}`;
+exports[`<Resource /> renders ok 1`] = `
+<div
+  className="resource"
+>
+  <Counter
+    id="paper"
+    name="Paper"
+    price={0}
+    purchaseRate={1}
+    quantity={9001}
+    quantityUnit="sheets"
+  />
+</div>
+`;

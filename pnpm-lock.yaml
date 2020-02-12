@@ -18,6 +18,7 @@ devDependencies:
   '@types/enzyme': 3.10.4
   enzyme: 3.11.0
   enzyme-adapter-react-16: 1.15.2_445d8a7b79fe215582582dcaac9aadf2
+  enzyme-to-json: 3.4.4_enzyme@3.11.0
   tslint: 5.20.1_typescript@3.7.5
   tslint-config-prettier: 1.18.0
 lockfileVersion: 5.1
@@ -4242,6 +4243,18 @@ packages:
     dev: true
     resolution:
       integrity: sha512-hGA3i1so8OrYOZSM9whlkNmVHOicJpsjgTzC+wn2JMJXhq1oO4kA4bJ5MsfzSIcC71aLDKzJ6gZpIxrqt3QTAQ==
+  /enzyme-to-json/3.4.4_enzyme@3.11.0:
+    dependencies:
+      enzyme: 3.11.0
+      lodash: 4.17.15
+      react-is: 16.12.0
+    dev: true
+    engines:
+      node: '>=6.0.0'
+    peerDependencies:
+      enzyme: ^3.4.0
+    resolution:
+      integrity: sha512-50LELP/SCPJJGic5rAARvU7pgE3m1YaNj7JLM+Qkhl5t7PAs6fiyc8xzc50RnkKPFQCv0EeFVjEWdIFRGPWMsA==
   /enzyme/3.11.0:
     dependencies:
       array.prototype.flat: 1.2.3
@@ -12025,6 +12038,7 @@ specifiers:
   '@types/react-dom': ^16.9.0
   enzyme: ^3.11.0
   enzyme-adapter-react-16: ^1.15.2
+  enzyme-to-json: ^3.4.4
   node-sass: ^4.13.0
   react: 0.0.0-experimental-241c4467e
   react-charts: ^2.0.0-beta.6

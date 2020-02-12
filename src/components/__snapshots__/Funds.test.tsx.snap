@@ -1,3 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Funds /> renders 1`] = `ShallowWrapper {}`;
+exports[`<Funds /> renders 1`] = `
+<div
+  className="funds"
+  data-test-id="funds"
+>
+  <strong>
+    Funds:
+  </strong>
+   
+  <span
+    className="funds__currency"
+  >
+    £
+  </span>
+  <span
+    className="funds__amount"
+  >
+    100.00
+  </span>
+</div>
+`;

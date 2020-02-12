@@ -1,3 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Upgrade /> renders 1`] = `ShallowWrapper {}`;
+exports[`<Upgrade /> renders 1`] = `
+<div
+  className="upgrade"
+  data-test-id="upgrade-ppc-2x"
+>
+  <button
+    className="btn"
+    onClick={[Function]}
+  >
+    2x PPC
+     (
+    £
+    100
+    )
+  </button>
+</div>
+`;
