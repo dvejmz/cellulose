@@ -1,6 +1,6 @@
 import * as Actions from '../actions';
-import historyReducer from '../reducers/history';
 import { History } from '../game/history';
+import historyReducer from '../reducers/history';
 import { getMockHistory } from '../utils/test/mocks';
 
 describe('HistoryReducer', () => {
