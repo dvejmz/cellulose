@@ -7,9 +7,9 @@ import combineReducers from 'react-combine-reducers';
 import Game, { GameConfig, GameState } from './Game';
 import demandReducer from './reducers/demand';
 import fundsReducer from './reducers/funds';
+import historyReducer from './reducers/history';
 import resourcesReducer from './reducers/resources';
 import upgradesReducer from './reducers/upgrades'
-import historyReducer from './reducers/history';
 
 export type AppConfig = GameConfig;
 

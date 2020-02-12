@@ -1,6 +1,6 @@
 import * as Actions from '../actions';
-import { RootReducerAction } from '../reducers';
 import { History } from '../game/history';
+import { RootReducerAction } from '../reducers';
 
 const historyReducer = (currentHistory: History, action: RootReducerAction): History => {
   switch(action.type) {

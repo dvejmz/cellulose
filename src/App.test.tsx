@@ -70,7 +70,7 @@ describe('App', () => {
 
     wrapper = mount(createApp(initialState, appConfig));
   });
-
+  
   it('should show make paper button', () => (
     expect(wrapper.exists(MakePaperButton)).toBeTruthy()
   ));

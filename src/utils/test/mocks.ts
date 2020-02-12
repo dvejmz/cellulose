@@ -1,8 +1,8 @@
 import { GameState } from '../../Game';
 import { Demand } from '../../game/demand';
+import { History } from '../../game/history';
 import { Resource, Resources } from '../../game/resources';
 import { Upgrade, Upgrades } from '../../game/upgrades';
-import { History } from '../../game/history';
 
 export const getMockGameState = (overrides: any = {}): GameState => ({
   demand: getMockDemand(overrides.demand),

@@ -9,8 +9,8 @@ import PlayerResource from './components/Resource';
 import SalesRateChart from './components/SalesRateChart';
 import Upgrades from './containers/Upgrades';
 import { Demand } from './game/demand';
-import { Resources } from './game/resources';
 import { History } from './game/history';
+import { Resources } from './game/resources';
 import {
   getActivePpcMultiplier,
   getUpgradeById,
@@ -217,7 +217,7 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
           </div>
         </div>
         <div className="column col-3 col-md-12">
-          <SalesRateChart rateHistory={history.paper.purchaseRate} />
+          <SalesRateChart label={'Paper Sales Rate'} rateHistory={history.paper.purchaseRate} />
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Chart } from 'react-charts';
 
 interface SalesRateChartProps {
+  label: string;
   rateHistory: number[];
 };
 
@@ -26,7 +27,9 @@ const SalesRateChart: React.FC<SalesRateChartProps> = (props: SalesRateChartProp
         height: '300px',
       }}
     >
-      <Chart data={data} axes={axes} tooltip />
+      <h4>{props.label}</h4>
+      <hr/>
+      <Chart data={data} axes={axes} />
     </div>
   );
 };
