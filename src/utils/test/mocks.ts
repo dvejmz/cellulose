@@ -67,4 +67,5 @@ export const getMockHistory = (overrides: any = {}): History => ({
   paper: {
     purchaseRate: [],
   },
+  ...overrides,
 });

@@ -6,11 +6,16 @@ const historyReducer = (currentHistory: History, action: RootReducerAction): His
   switch(action.type) {
     case Actions.HISTORY_PAPER_PURCHASE_RATE:
       const newPurchaseRate = action.data.purchaseRate;
+      const currentRateHistory = [ ...currentHistory.paper.purchaseRate ];
+      if (currentRateHistory.length >= 200) {
+        currentRateHistory.shift();
+      }
+
       return {
         ...currentHistory,
         paper: {
           ...currentHistory.paper,
-          purchaseRate: [ ...currentHistory.paper.purchaseRate, newPurchaseRate ]
+          purchaseRate: [ ...currentRateHistory, newPurchaseRate ]
         },
       };
     default:
