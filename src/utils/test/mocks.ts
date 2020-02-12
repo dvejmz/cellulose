@@ -2,12 +2,14 @@ import { GameState } from '../../Game';
 import { Demand } from '../../game/demand';
 import { Resource, Resources } from '../../game/resources';
 import { Upgrade, Upgrades } from '../../game/upgrades';
+import { History } from '../../game/history';
 
 export const getMockGameState = (overrides: any = {}): GameState => ({
   demand: getMockDemand(overrides.demand),
   funds: overrides.funds === undefined ? 100 : overrides.funds,
   resources: getMockResources(overrides.resources),
   upgrades: getMockUpgrades(overrides.upgrades),
+  history: getMockHistory(overrides.history),
 });
 
 export const getMockDemand = (overrides: any = {}): Demand => ({
@@ -58,4 +60,11 @@ export const getMockUpgrades = (overrides: any = {}): Upgrades => ({
     getMockUpgrade({ id: 'upgrade-ppc-8x' }),
   ],
   ...overrides,
+});
+
+export const getMockHistory = (overrides: any = {}): History => ({
+  funds: [],
+  paper: {
+    purchaseRate: [],
+  },
 });

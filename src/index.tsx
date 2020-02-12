@@ -27,6 +27,10 @@ const initialState: GameState = {
       purchaseRate: 1000,
     },
   },
+  history: {
+    paper: { purchaseRate: [] },
+    funds: [],
+  },
   upgrades: {
     totalPaper: 0,
     upgrades: [

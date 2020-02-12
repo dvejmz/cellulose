@@ -6,9 +6,11 @@ import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 import PurchasableResource from './components/PurchasableResource';
 import PlayerResource from './components/Resource';
+import SalesRateChart from './components/SalesRateChart';
 import Upgrades from './containers/Upgrades';
 import { Demand } from './game/demand';
 import { Resources } from './game/resources';
+import { History } from './game/history';
 import {
   getActivePpcMultiplier,
   getUpgradeById,
@@ -27,6 +29,7 @@ export interface GameState {
   resources: Resources;
   demand: Demand;
   upgrades: UpgradesType;
+  history: History;
 }
 
 export interface GameConfig {
@@ -48,10 +51,11 @@ const {
   RESOURCES_PAPER_PRICE_INCREASE,
   RESOURCES_PAPER_PRICE_DECREASE,
   UPGRADES_BUY,
+  HISTORY_PAPER_PURCHASE_RATE,
 } = Actions;
 
 const Game: React.FC<GameProps> = (props: GameProps) => {
-  const { resources, funds, demand, upgrades } = props.gameState;
+  const { resources, funds, demand, upgrades, history } = props.gameState;
   const { config } = props;
   const dispatch = props.dispatch;
 
@@ -95,9 +99,14 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
     }
   };
 
+  const pushStateToHistory = () => {
+    dispatch({ type: HISTORY_PAPER_PURCHASE_RATE, data: { purchaseRate: resources.paper.purchaseRate} });
+  };
+
   const cbInitialiseGameState = useCallback(initialiseGameState, []);
   const cbSellPaper = useCallback(sellPaper, [resources.paper]);
   const cbApplyActiveUpgrades = useCallback(applyActiveUpgrades, [upgrades.upgrades]);
+  const cbPushStateToHistory = useCallback(pushStateToHistory, [history]);
 
   useEffect(() => {
     cbInitialiseGameState();
@@ -106,9 +115,14 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
   useEffect(() => {
     const timer = setInterval(() => {
       cbApplyActiveUpgrades();
+      cbPushStateToHistory();
     }, props.config.baseGameCycleDurationMs * 1.5);
     return () => clearInterval(timer);
-  }, [props.config.baseGameCycleDurationMs, cbApplyActiveUpgrades]);
+  }, [
+    props.config.baseGameCycleDurationMs,
+    cbApplyActiveUpgrades,
+    cbPushStateToHistory,
+  ]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -159,7 +173,7 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
             onBuyClick={handleBuyUpgradeClick}
           />
         </div>
-        <div className="column col-6 col-md-12">
+        <div className="column col-3 col-md-12">
           <Counter
             id="total-paper"
             name="Total Paper"
@@ -201,6 +215,9 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
               <button className="btn btn-sm resources__paper-price-adj" data-test-id="paper-price-dec-button" onClick={handleDecPaperPriceClick}>-</button>
             </div>
           </div>
+        </div>
+        <div className="column col-3 col-md-12">
+          <SalesRateChart rateHistory={history.paper.purchaseRate} />
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ import demandReducer from './reducers/demand';
 import fundsReducer from './reducers/funds';
 import resourcesReducer from './reducers/resources';
 import upgradesReducer from './reducers/upgrades'
+import historyReducer from './reducers/history';
 
 export type AppConfig = GameConfig;
 
@@ -24,6 +25,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     resources: [ resourcesReducer, initialState.resources ],
     demand: [ demandReducer, initialState.demand ],
     upgrades: [ upgradesReducer, initialState.upgrades ],
+    history: [ historyReducer, initialState.history ],
   });
   const [ state, dispatch ]: any[] = useReducer(rootReducer, rootState);
 
