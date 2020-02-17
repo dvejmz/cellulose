@@ -7,17 +7,20 @@ interface SalesRateChartProps {
 };
 
 const SalesRateChart: React.FC<SalesRateChartProps> = (props: SalesRateChartProps) => {
-  const series = props.rateHistory.map((dp, i) => [i, dp]);
+  const dataPoints = props.rateHistory.map((dp, i) => [i, dp]);
+  const series = React.useMemo(() => ({
+    showPoints: false,
+  }), []);
   const data = React.useMemo(() => [
     {
       label: 'Sales Rate',
-      data: series,
+      data: dataPoints,
     },
-  ], [series]);
+  ], [dataPoints]);
 
   const axes = React.useMemo(() => [
-    { primary: true, type: 'linear', position: 'bottom', show: true },
-    { type: 'linear', position: 'left', show: true },
+    { primary: true, type: 'linear', position: 'bottom' },
+    { type: 'linear', position: 'left' },
   ], []);
 
   return (
@@ -29,7 +32,7 @@ const SalesRateChart: React.FC<SalesRateChartProps> = (props: SalesRateChartProp
     >
       <h4>{props.label}</h4>
       <hr/>
-      <Chart data={data} axes={axes} />
+      <Chart data={data} series={series} axes={axes} />
     </div>
   );
 };
