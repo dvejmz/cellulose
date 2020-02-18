@@ -77,7 +77,7 @@ const initialState: GameState = {
       {
         id: 'upgrade-chart-paper-demand',
         previousId: null,
-        name: 'Paper Demand',
+        name: 'Paper Demand Chart',
         cost: 5,
         unlockCost: 200,
         enabled: false,
