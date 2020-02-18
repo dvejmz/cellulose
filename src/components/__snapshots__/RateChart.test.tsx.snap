@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SalesRateChart /> renders 1`] = `
-<SalesRateChart
+exports[`<RateChart /> renders 1`] = `
+<RateChart
   id="paper-demand"
   label="Paper Demand"
   rateHistory={
@@ -4619,5 +4619,5 @@ exports[`<SalesRateChart /> renders 1`] = `
       </ForwardRef(ChartInner)>
     </Chart>
   </div>
-</SalesRateChart>
+</RateChart>
 `;

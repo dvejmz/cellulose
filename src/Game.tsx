@@ -5,8 +5,8 @@ import Counter, { QuantityUnitAlignment } from './components/Counter';
 import Funds from './components/Funds';
 import MakePaperButton from './components/MakePaperButton';
 import PurchasableResource from './components/PurchasableResource';
+import RateChart from './components/RateChart';
 import PlayerResource from './components/Resource';
-import SalesRateChart from './components/SalesRateChart';
 import Upgrades from './containers/Upgrades';
 import { Demand } from './game/demand';
 import { History } from './game/history';
@@ -219,7 +219,7 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
         <div className="column col-3 col-md-12">
           {(
             getUpgradeById('upgrade-chart-paper-demand', upgrades.upgrades)?.enabled &&
-              <SalesRateChart
+              <RateChart
                 id="paper-demand"
                 label="Paper Demand"
                 rateHistory={history.paper.purchaseRate}

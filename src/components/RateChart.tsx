@@ -1,13 +1,13 @@
 import React from 'react';
 import { Chart } from 'react-charts';
 
-interface SalesRateChartProps {
+interface RateChartProps {
   id: string;
   label: string;
   rateHistory: number[];
 };
 
-const SalesRateChart: React.FC<SalesRateChartProps> = (props: SalesRateChartProps) => {
+const RateChart: React.FC<RateChartProps> = (props: RateChartProps) => {
   const dataPoints = props.rateHistory.map((dp, i) => [i, dp]);
   const series = React.useMemo(() => ({
     showPoints: false,
@@ -39,4 +39,4 @@ const SalesRateChart: React.FC<SalesRateChartProps> = (props: SalesRateChartProp
   );
 };
 
-export default SalesRateChart;
+export default RateChart;
