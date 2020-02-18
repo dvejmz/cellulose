@@ -32,8 +32,6 @@ export const getInactiveUpgrades = (upgrades: Upgrade[]): Upgrade[] => (
 const getActiveUpgrades = (upgrades: Upgrade[]) =>
   upgrades.filter(u => u.enabled).sort((lhs, rhs) => rhs.cost - lhs.cost);
 
-// just fetch a list of everything under < UC which is not enabled and then make a reverse linked list with references
-// to the previous, active upgrade for a possibly unlockable upgrade
 export const getUnlockableUpgrades = (paperQty: number, upgrades: Upgrade[]): Upgrade[]  => {
   const activeUpgrades = getActiveUpgrades(upgrades);
   const inactiveUpgrades = getInactiveUpgrades(upgrades).filter(u => u.unlockCost <= paperQty);

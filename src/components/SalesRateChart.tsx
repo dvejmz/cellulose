@@ -2,6 +2,7 @@ import React from 'react';
 import { Chart } from 'react-charts';
 
 interface SalesRateChartProps {
+  id: string;
   label: string;
   rateHistory: number[];
 };
@@ -29,6 +30,7 @@ const SalesRateChart: React.FC<SalesRateChartProps> = (props: SalesRateChartProp
         width: '225px',
         height: '150px',
       }}
+      data-test-id={`chart-${props.id}`}
     >
       <h4>{props.label}</h4>
       <hr/>

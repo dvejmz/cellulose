@@ -74,6 +74,14 @@ const initialState: GameState = {
         unlockCost: 500,
         enabled: false,
       },
+      {
+        id: 'upgrade-chart-paper-demand',
+        previousId: null,
+        name: 'Paper Demand',
+        cost: 5,
+        unlockCost: 200,
+        enabled: false,
+      },
     ],
   },
 };

@@ -2,7 +2,8 @@
 
 exports[`<SalesRateChart /> renders 1`] = `
 <SalesRateChart
-  label="Paper Sales Rate"
+  id="paper-demand"
+  label="Paper Demand"
   rateHistory={
     Array [
       1,
@@ -15,6 +16,7 @@ exports[`<SalesRateChart /> renders 1`] = `
   }
 >
   <div
+    data-test-id="chart-paper-demand"
     style={
       Object {
         "height": "150px",
@@ -23,7 +25,7 @@ exports[`<SalesRateChart /> renders 1`] = `
     }
   >
     <h4>
-      Paper Sales Rate
+      Paper Demand
     </h4>
     <hr />
     <Chart

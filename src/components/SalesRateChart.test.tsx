@@ -7,7 +7,7 @@ describe('<SalesRateChart />', () => {
 
   beforeEach(() => {
     const rateHistory = [1, 2, 3, 4, 5, 6];
-    chart = mount(<SalesRateChart label={'Paper Sales Rate'} rateHistory={rateHistory} />);
+    chart = mount(<SalesRateChart id="paper-demand" label="Paper Demand" rateHistory={rateHistory} />);
   });
 
   it('renders', () => {

@@ -172,9 +172,33 @@ describe('Upgrades', () => {
 
     it('should increase paper by increase amount after some time elapses', () => {
       act(() => {
+        // Run recursive timers too (timers that set other timers)
         jest.runOnlyPendingTimers();
       });
       expectResourceValue(wrapper, 'counter-total-paper', '1');
+    });
+  });
+
+  describe('when paper demand chart upgrade is active', () => {
+    beforeEach(() => {
+      const state = { ...initialState };
+      state.upgrades.upgrades = [
+        {
+          id: 'upgrade-chart-paper-demand',
+          previousId: null,
+          name: 'Paper Demand',
+          cost: 100,
+          unlockCost: 10,
+          enabled: true,
+        },
+      ];
+
+      wrapper = mount(createApp(state));
+    });
+
+    it('should display paper demand chart', () => {
+      const paperDemandChart = getByTestId(wrapper, 'chart-paper-demand');
+      expect(paperDemandChart.exists()).toBeTruthy();
     });
   });
 });

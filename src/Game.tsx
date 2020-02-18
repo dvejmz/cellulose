@@ -217,7 +217,14 @@ const Game: React.FC<GameProps> = (props: GameProps) => {
           </div>
         </div>
         <div className="column col-3 col-md-12">
-          <SalesRateChart label={'Paper Demand'} rateHistory={history.paper.purchaseRate} />
+          {(
+            getUpgradeById('upgrade-chart-paper-demand', upgrades.upgrades)?.enabled &&
+              <SalesRateChart
+                id="paper-demand"
+                label="Paper Demand"
+                rateHistory={history.paper.purchaseRate}
+              />
+          )}
         </div>
       </div>
     </div>
