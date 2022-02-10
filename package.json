@@ -10,7 +10,7 @@
         "@types/node": "^12.0.0",
         "@types/react": "^16.9.0",
         "@types/react-dom": "^16.9.0",
-        "node-sass": "^4.13.0",
+        "node-sass": "^7.0.0",
         "react": "0.0.0-experimental-241c4467e",
         "react-charts": "^2.0.0-beta.6",
         "react-combine-reducers": "^1.0.2",
